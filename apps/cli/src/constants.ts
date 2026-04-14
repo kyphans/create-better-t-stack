@@ -1,7 +1,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { desktopWebFrontends } from "@better-t-stack/types";
+import { desktopWebFrontends } from "@kps/types";
 
 import { getUserPkgManager } from "./utils/get-package-manager";
 
@@ -9,15 +9,15 @@ import { getUserPkgManager } from "./utils/get-package-manager";
 export {
   dependencyVersionMap,
   type AvailableDependencies,
-} from "@better-t-stack/template-generator";
+} from "@kps/template-generator";
 
 const __filename = fileURLToPath(import.meta.url);
 const distPath = path.dirname(__filename);
 export const PKG_ROOT = path.join(distPath, "../");
 
 export const DEFAULT_CONFIG_BASE = {
-  projectName: "my-better-t-app",
-  relativePath: "my-better-t-app",
+  projectName: "my-kps-app",
+  relativePath: "my-kps-app",
   frontend: ["tanstack-router"],
   database: "sqlite",
   orm: "drizzle",

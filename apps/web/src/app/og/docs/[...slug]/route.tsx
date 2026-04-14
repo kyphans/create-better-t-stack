@@ -146,7 +146,7 @@ export async function GET(_req: Request, { params }: RouteContext<"/og/docs/[...
                 display: "flex",
               }}
             >
-              Better-T Stack
+              KPS
             </span>
             <span style={{ color: "#313244", fontSize: "18px", display: "flex" }}>/</span>
             <span style={{ color: "#585b70", fontSize: "16px", display: "flex" }}>docs</span>
@@ -159,7 +159,7 @@ export async function GET(_req: Request, { params }: RouteContext<"/og/docs/[...
               display: "flex",
             }}
           >
-            better-t-stack.dev
+            kps.pqky.dev
           </div>
         </div>
       </div>

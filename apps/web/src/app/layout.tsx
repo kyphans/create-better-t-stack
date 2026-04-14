@@ -21,10 +21,10 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-const ogImage = "https://r2.better-t-stack.dev/og.png";
+const ogImage = "https://r2.kps.pqky.dev/og.png";
 
 export const metadata: Metadata = {
-  title: "Better-T-Stack",
+  title: "KPS",
   description:
     "A modern CLI tool for scaffolding end-to-end type-safe TypeScript projects with best practices and customizable configurations",
   keywords: [
@@ -44,32 +44,32 @@ export const metadata: Metadata = {
     "Better-Auth",
     "convex",
     "monorepo",
-    "Better-T-Stack",
-    "create-better-t-stack",
+    "KPS",
+    "create-kps",
   ],
-  authors: [{ name: "Better-T-Stack Team" }],
-  creator: "Better-T-Stack",
-  publisher: "Better-T-Stack",
+  authors: [{ name: "Ky Phan" }],
+  creator: "KPS",
+  publisher: "KPS",
   formatDetection: {
     email: false,
     telephone: false,
   },
-  metadataBase: new URL("https://better-t-stack.dev"),
+  metadataBase: new URL("https://kps.pqky.dev"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Better-T-Stack",
+    title: "KPS",
     description:
       "A modern CLI tool for scaffolding end-to-end type-safe TypeScript projects with best practices and customizable configurations",
-    url: "https://better-t-stack.dev",
-    siteName: "Better-T-Stack",
+    url: "https://kps.pqky.dev",
+    siteName: "KPS",
     images: [
       {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "Better-T-Stack",
+        alt: "KPS",
       },
     ],
     locale: "en_US",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Better-T-Stack",
+    title: "KPS",
     description:
       "A modern CLI tool for scaffolding end-to-end type-safe TypeScript projects with best practices and customizable configurations",
     images: [ogImage],

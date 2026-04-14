@@ -1,24 +1,24 @@
 import path from "node:path";
 
-import type { BetterTStackConfig } from "@better-t-stack/types";
+import type { KpsConfig } from "@kps/types";
 import fs from "fs-extra";
 import { applyEdits, modify, parse } from "jsonc-parser";
 
-const BTS_CONFIG_FILE = "bts.jsonc";
+const KPS_CONFIG_FILE = "kps.jsonc";
 
 /**
- * Reads the BTS configuration file from the project directory.
+ * Reads the KPS configuration file from the project directory.
  */
-export async function readBtsConfig(projectDir: string): Promise<BetterTStackConfig | null> {
+export async function readKpsConfig(projectDir: string): Promise<KpsConfig | null> {
   try {
-    const configPath = path.join(projectDir, BTS_CONFIG_FILE);
+    const configPath = path.join(projectDir, KPS_CONFIG_FILE);
 
     if (!(await fs.pathExists(configPath))) {
       return null;
     }
 
     const configContent = await fs.readFile(configPath, "utf-8");
-    const config = parse(configContent) as BetterTStackConfig;
+    const config = parse(configContent) as KpsConfig;
     return config;
   } catch {
     return null;
@@ -26,19 +26,19 @@ export async function readBtsConfig(projectDir: string): Promise<BetterTStackCon
 }
 
 /**
- * Updates specific fields in the BTS configuration file.
+ * Updates specific fields in the KPS configuration file.
  */
-export async function updateBtsConfig(
+export async function updateKpsConfig(
   projectDir: string,
   updates: Partial<
     Pick<
-      BetterTStackConfig,
+      KpsConfig,
       "addons" | "addonOptions" | "dbSetupOptions" | "webDeploy" | "serverDeploy"
     >
   >,
 ): Promise<void> {
   try {
-    const configPath = path.join(projectDir, BTS_CONFIG_FILE);
+    const configPath = path.join(projectDir, KPS_CONFIG_FILE);
 
     if (!(await fs.pathExists(configPath))) {
       return;

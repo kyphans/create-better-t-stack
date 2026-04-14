@@ -1,20 +1,20 @@
-import type { BetterTStackConfig, ProjectConfig } from "@better-t-stack/types";
+import type { KPSConfig, ProjectConfig } from "@kps/types";
 
 import type { VirtualFileSystem } from "./core/virtual-fs";
 
-const BTS_CONFIG_FILE = "bts.jsonc";
+const KPS_CONFIG_FILE = "kps.jsonc";
 
 /**
- * Writes the BTS configuration file to the VFS (for new project creation).
+ * Writes the KPS configuration file to the VFS (for new project creation).
  * This is browser-safe as it only writes to VFS, not the real filesystem.
  */
-export function writeBtsConfigToVfs(
+export function writeKpsConfigToVfs(
   vfs: VirtualFileSystem,
   projectConfig: ProjectConfig,
   version: string,
   reproducibleCommand?: string,
 ): void {
-  const btsConfig: BetterTStackConfig = {
+  const kpsConfig: KPSConfig = {
     version,
     createdAt: new Date().toISOString(),
     reproducibleCommand,
@@ -37,31 +37,31 @@ export function writeBtsConfigToVfs(
   };
 
   const baseContent = {
-    $schema: "https://r2.better-t-stack.dev/schema.json",
-    ...btsConfig,
+    $schema: "https://r2.kps.pqky.dev/schema.json",
+    ...kpsConfig,
   };
 
   const jsonContent = JSON.stringify(baseContent, null, 2);
 
   const addCommand =
     projectConfig.packageManager === "npm"
-      ? "npx create-better-t-stack add"
+      ? "npx create-kps add"
       : projectConfig.packageManager === "pnpm"
-        ? "pnpm dlx create-better-t-stack add"
-        : "bun create better-t-stack add";
+        ? "pnpm dlx create-kps add"
+        : "bun create kps add";
 
-  const finalContent = `// Better-T-Stack
+  const finalContent = `// KPS
 //
-// Website: https://www.better-t-stack.dev/
-// Stack Builder: https://www.better-t-stack.dev/new
-// Analytics: https://www.better-t-stack.dev/analytics
-// Showcase: https://www.better-t-stack.dev/showcase
-// Sponsor: https://github.com/sponsors/AmanVarshney01
+// Website: https://kps.pqky.dev/
+// Stack Builder: https://kps.pqky.dev/new
+// Analytics: https://kps.pqky.dev/analytics
+// Showcase: https://kps.pqky.dev/showcase
+// Sponsor: https://github.com/sponsors/kyphans
 //
 // Add new addons with: ${addCommand}
 // This file is safe to delete
 
 ${jsonContent}`;
 
-  vfs.writeFile(BTS_CONFIG_FILE, finalContent);
+  vfs.writeFile(KPS_CONFIG_FILE, finalContent);
 }

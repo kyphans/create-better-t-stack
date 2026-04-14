@@ -25,7 +25,7 @@ function formatProjectName(name: string) {
 }
 
 function withFormattedProjectName(stack: StackState) {
-  const projectName = stack.projectName || "my-better-t-app";
+  const projectName = stack.projectName || "my-kps-app";
   return {
     ...stack,
     projectName: formatProjectName(projectName),
@@ -83,7 +83,7 @@ export function useStackBuilder() {
   const projectNameError = validateProjectName(stack.projectName || "");
 
   useEffect(() => {
-    const savedStack = localStorage.getItem("betterTStackPreference");
+    const savedStack = localStorage.getItem("kpsStackPreference");
     if (!savedStack) {
       return;
     }
@@ -93,7 +93,7 @@ export function useStackBuilder() {
       setLastSavedStack(parsedStack);
     } catch (error) {
       console.error("Failed to parse saved stack", error);
-      localStorage.removeItem("betterTStackPreference");
+      localStorage.removeItem("kpsStackPreference");
     }
   }, []);
 
@@ -224,7 +224,7 @@ export function useStackBuilder() {
     startTransition(() => {
       setStack({
         ...(randomStack as StackState),
-        projectName: stack.projectName || "my-better-t-app",
+        projectName: stack.projectName || "my-kps-app",
       });
     });
 
@@ -351,7 +351,7 @@ export function useStackBuilder() {
 
   function saveCurrentStack() {
     const stackToSave = withFormattedProjectName(compatibilityAnalysis.adjustedStack || stack);
-    localStorage.setItem("betterTStackPreference", JSON.stringify(stackToSave));
+    localStorage.setItem("kpsStackPreference", JSON.stringify(stackToSave));
     setLastSavedStack(stackToSave);
     toast.success("Your stack configuration has been saved");
   }

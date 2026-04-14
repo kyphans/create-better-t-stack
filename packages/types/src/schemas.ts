@@ -124,7 +124,7 @@ export const InstallScopeSchema = z.enum(["project", "global"]).describe("Instal
 
 export const McpServerSchema = z
   .enum([
-    "better-t-stack",
+    "kps",
     "context7",
     "nx",
     "cloudflare-docs",
@@ -446,7 +446,7 @@ export const ProjectConfigSchema = z.object({
   serverDeploy: ServerDeploySchema,
 });
 
-export const BetterTStackConfigSchema = z.object({
+export const KpsConfigSchema = z.object({
   version: z.string().describe("CLI version used to create this project"),
   createdAt: z.string().describe("Timestamp when the project was created"),
   reproducibleCommand: z.string().optional().describe("Command to reproduce this project setup"),
@@ -468,16 +468,16 @@ export const BetterTStackConfigSchema = z.object({
   serverDeploy: ServerDeploySchema,
 });
 
-export const BetterTStackConfigFileSchema = z
+export const KpsConfigFileSchema = z
   .object({
     $schema: z.string().optional().describe("JSON Schema reference for validation"),
   })
-  .extend(BetterTStackConfigSchema.shape)
+  .extend(KpsConfigSchema.shape)
   .strict()
   .meta({
-    id: "https://r2.better-t-stack.dev/schema.json",
-    title: "Better-T-Stack Configuration",
-    description: "Configuration file for Better-T-Stack projects",
+    id: "https://r2.kps.pqky.dev/schema.json",
+    title: "KPS Configuration",
+    description: "Configuration file for KPS projects",
   });
 
 export const InitResultSchema = z.object({

@@ -5,7 +5,7 @@ Workflow chính mô tả các tiến trình chạy ngầm từ lúc người dù
 ```text
  +-----------------------------------------------------------------+
  |                     NHẬP LỆNH / CHỈ ĐỊNH CLI                    |
- |        e.g: bun create-better-t-stack --frontend=react          |
+ |        e.g: bun create-kps --frontend=react          |
  +-------------------------------+---------------------------------+
                                  |
                                  v

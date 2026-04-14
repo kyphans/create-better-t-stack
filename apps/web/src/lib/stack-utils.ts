@@ -88,15 +88,15 @@ export function getDesktopBuildNote(stack: Pick<StackState, "addons" | "webFront
 
 export function generateStackCommand(stack: StackState) {
   const packageManagerCommands = {
-    npm: "npx create-better-t-stack@latest",
-    pnpm: "pnpm create better-t-stack@latest",
-    default: "bun create better-t-stack@latest",
+    npm: "npx create-kps@latest",
+    pnpm: "pnpm create kps@latest",
+    default: "bun create kps@latest",
   };
 
   const base =
     packageManagerCommands[stack.packageManager as keyof typeof packageManagerCommands] ||
     packageManagerCommands.default;
-  const projectName = stack.projectName || "my-better-t-app";
+  const projectName = stack.projectName || "my-kps-app";
 
   const isStackDefaultExceptProjectName = Object.entries(DEFAULT_STACK).every(
     ([key]) =>
@@ -177,7 +177,7 @@ export function generateStackCommand(stack: StackState) {
 }
 
 export function generateStackUrlFromState(stack: StackState, baseUrl?: string) {
-  const origin = baseUrl || "https://better-t-stack.dev";
+  const origin = baseUrl || "https://kps.pqky.dev";
 
   const stackParams = new URLSearchParams();
   Object.entries(stackUrlKeys).forEach(([stackKey, urlKey]) => {
@@ -192,7 +192,7 @@ export function generateStackUrlFromState(stack: StackState, baseUrl?: string) {
 }
 
 export function generateStackSharingUrl(stack: StackState, baseUrl?: string) {
-  const origin = baseUrl || "https://better-t-stack.dev";
+  const origin = baseUrl || "https://kps.pqky.dev";
 
   const stackParams = new URLSearchParams();
   Object.entries(stackUrlKeys).forEach(([stackKey, urlKey]) => {

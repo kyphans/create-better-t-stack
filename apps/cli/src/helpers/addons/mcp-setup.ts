@@ -78,10 +78,10 @@ function hasNativeFrontend(frontend: ProjectConfig["frontend"]): boolean {
 function getAllMcpServers(config: ProjectConfig): McpServerDef[] {
   return [
     {
-      key: "better-t-stack",
-      label: "Better T Stack",
-      name: "better-t-stack",
-      target: getPackageExecutionCommand(config.packageManager, "create-better-t-stack@latest mcp"),
+      key: "kps",
+      label: "KPS",
+      name: "kps",
+      target: getPackageExecutionCommand(config.packageManager, "create-kps@latest mcp"),
     },
     {
       key: "context7",
@@ -194,7 +194,7 @@ export function getRecommendedMcpServers(
   scope: InstallScope,
 ): McpServerDef[] {
   const serversByKey = new Map(getAllMcpServers(config).map((server) => [server.key, server]));
-  const recommendedServerKeys: McpServerKey[] = ["better-t-stack", "context7"];
+  const recommendedServerKeys: McpServerKey[] = ["kps", "context7"];
 
   if (scope === "project" && config.addons.includes("nx")) {
     recommendedServerKeys.push("nx");

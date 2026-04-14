@@ -2,7 +2,7 @@ import { describe, expect, it } from "bun:test";
 
 import {
   AddInputSchema,
-  BetterTStackConfigFileSchema,
+  KpsConfigFileSchema,
   CLIInputSchema,
   CreateInputSchema,
 } from "../../../packages/types/src/schemas";
@@ -35,8 +35,8 @@ describe("Input schemas", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects unknown keys in bts.jsonc config payloads", () => {
-    const result = BetterTStackConfigFileSchema.safeParse({
+  it("rejects unknown keys in kps.jsonc config payloads", () => {
+    const result = KpsConfigFileSchema.safeParse({
       version: "0.0.0",
       createdAt: new Date(0).toISOString(),
       projectName: "app",
@@ -99,6 +99,6 @@ describe("Input schemas", () => {
   it("imports the MCP module without schema-construction crashes", async () => {
     const module = await import("../src/mcp");
 
-    expect(typeof module.createBtsMcpServer).toBe("function");
+    expect(typeof module.createKpsMcpServer).toBe("function");
   });
 });

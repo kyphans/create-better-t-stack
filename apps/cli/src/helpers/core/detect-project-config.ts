@@ -3,32 +3,32 @@ import path from "node:path";
 import { Result } from "better-result";
 import fs from "fs-extra";
 
-import { readBtsConfig } from "../../utils/bts-config";
+import { readKpsConfig } from "../../utils/kps-config";
 
 export async function detectProjectConfig(projectDir: string) {
   const result = await Result.tryPromise({
     try: async () => {
-      const btsConfig = await readBtsConfig(projectDir);
-      if (btsConfig) {
+      const kpsConfig = await readKpsConfig(projectDir);
+      if (kpsConfig) {
         return {
           projectDir,
           projectName: path.basename(projectDir),
-          addonOptions: btsConfig.addonOptions,
-          dbSetupOptions: btsConfig.dbSetupOptions,
-          database: btsConfig.database,
-          orm: btsConfig.orm,
-          backend: btsConfig.backend,
-          runtime: btsConfig.runtime,
-          frontend: btsConfig.frontend,
-          addons: btsConfig.addons,
-          examples: btsConfig.examples,
-          auth: btsConfig.auth,
-          payments: btsConfig.payments,
-          packageManager: btsConfig.packageManager,
-          dbSetup: btsConfig.dbSetup,
-          api: btsConfig.api,
-          webDeploy: btsConfig.webDeploy,
-          serverDeploy: btsConfig.serverDeploy,
+          addonOptions: kpsConfig.addonOptions,
+          dbSetupOptions: kpsConfig.dbSetupOptions,
+          database: kpsConfig.database,
+          orm: kpsConfig.orm,
+          backend: kpsConfig.backend,
+          runtime: kpsConfig.runtime,
+          frontend: kpsConfig.frontend,
+          addons: kpsConfig.addons,
+          examples: kpsConfig.examples,
+          auth: kpsConfig.auth,
+          payments: kpsConfig.payments,
+          packageManager: kpsConfig.packageManager,
+          dbSetup: kpsConfig.dbSetup,
+          api: kpsConfig.api,
+          webDeploy: kpsConfig.webDeploy,
+          serverDeploy: kpsConfig.serverDeploy,
         };
       }
 
@@ -40,9 +40,9 @@ export async function detectProjectConfig(projectDir: string) {
   return result.isOk() ? result.value : null;
 }
 
-export async function isBetterTStackProject(projectDir: string): Promise<boolean> {
+export async function isKpsProject(projectDir: string): Promise<boolean> {
   const result = await Result.tryPromise({
-    try: () => fs.pathExists(path.join(projectDir, "bts.jsonc")),
+    try: () => fs.pathExists(path.join(projectDir, "kps.jsonc")),
     catch: () => false,
   });
 

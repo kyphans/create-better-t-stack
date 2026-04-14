@@ -9,8 +9,8 @@ import mainLogoLight from "@/public/logo-light.svg";
 
 export const logo = (
   <>
-    <Image alt="better-t-stack" src={mainLogoLight} className="w-8 dark:hidden" />
-    <Image alt="better-t-stack" src={mainLogoDark} className="hidden w-8 dark:block" />
+    <Image alt="kps" src={mainLogoLight} className="w-8 dark:hidden" />
+    <Image alt="kps" src={mainLogoDark} className="hidden w-8 dark:block" />
   </>
 );
 
@@ -34,7 +34,7 @@ export const links: LinkItemType[] = [
   },
   {
     text: "Demo",
-    url: "https://my-better-t-app.amanv.cloud/",
+    url: "https://my-kps-app.pqky.dev/",
     external: true,
   },
   {
@@ -42,7 +42,7 @@ export const links: LinkItemType[] = [
     icon: <Image src={npmLogo} alt="npm" className="size-4 invert-0 dark:invert" />,
     label: "NPM",
     type: "icon",
-    url: "https://www.npmjs.com/package/create-better-t-stack",
+    url: "https://www.npmjs.com/package/create-kps",
     external: true,
     secondary: true,
   },
@@ -51,7 +51,7 @@ export const links: LinkItemType[] = [
     icon: <Image src={xLogo} alt="x" className="size-4 invert dark:invert-0" />,
     label: "X",
     type: "icon",
-    url: "https://x.com/amanvarshney01",
+    url: "https://x.com/kyphans",
     external: true,
     secondary: true,
   },
@@ -71,7 +71,7 @@ export const baseOptions: BaseLayoutProps = {
     title: (
       <>
         {logo}
-        <span className="font-medium font-mono text-md tracking-tighter">Better T Stack</span>
+        <span className="font-medium font-mono text-md tracking-tighter">KPS</span>
       </>
     ),
   },

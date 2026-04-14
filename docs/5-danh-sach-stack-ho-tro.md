@@ -1,6 +1,6 @@
 # Danh sách các Stack (Công nghệ) được hỗ trợ
 
-Tính đến phiên bản hiện tại, CLI `create-better-t-stack` hỗ trợ một hệ sinh thái rộng lớn, tuỳ biến theo từng phần tử của kiến trúc:
+Tính đến phiên bản hiện tại, CLI `create-kps` hỗ trợ một hệ sinh thái rộng lớn, tuỳ biến theo từng phần tử của kiến trúc:
 
 ## 1. Frontend Frameworks
 (Tuỳ chọn cờ: `--frontend`)

@@ -23,7 +23,7 @@ export const EMBEDDED_TEMPLATES: Map<string, string> = new Map([
 			"!**/routeTree.gen.ts",
 			"!**/src-tauri",
 			"!**/.nuxt",
-			"!bts.jsonc",
+			"!kps.jsonc",
 			"!**/.expo",
 			"!**/.wrangler",
 			"!**/.alchemy",
@@ -5176,7 +5176,7 @@ return (
   <ScrollView style={styles.scrollView}>
     <View style={styles.content}>
       <Text style={[styles.title, { color: theme.text }]}>
-        BETTER T STACK
+        KPS
       </Text>
 
       {session?.user ? (
@@ -5874,7 +5874,7 @@ export default function Home() {
     <Container>
       <ScrollView>
         <View style={styles.pageContainer}>
-          <Text style={styles.headerTitle}>BETTER T STACK</Text>
+          <Text style={styles.headerTitle}>KPS</Text>
           {session?.user ? (
             <View style={styles.sessionInfoCard}>
               <View style={styles.sessionUserRow}>
@@ -6535,7 +6535,7 @@ return (
 <Container className="p-6">
   <View className="py-4 mb-6">
     <Text className="text-4xl font-bold text-foreground mb-2">
-      BETTER T STACK
+      KPS
     </Text>
   </View>
 
@@ -14024,7 +14024,7 @@ lerna-debug.log*
 .turbo
 .nx
 
-# Better-T-Stack
+# KPS
 .alchemy
 
 # Testing
@@ -14038,7 +14038,7 @@ tmp
 temp
 `],
   ["base/package.json.hbs", `{
-  "name": "better-t-stack",
+  "name": "kps",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -22105,7 +22105,7 @@ return (
   <ScrollView style={styles.scrollView}>
     <View style={styles.content}>
       <Text style={[styles.title, { color: theme.text }]}>
-        BETTER T STACK
+        KPS
       </Text>
 
       {{#unless (and (eq backend "convex") (eq auth "better-auth"))}}
@@ -23207,7 +23207,7 @@ export default function Home() {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.heroTitle}>
-          BETTER T STACK
+          KPS
         </Text>
 
         {{#unless (and (eq backend "convex") (eq auth "better-auth"))}}
@@ -24420,7 +24420,7 @@ return (
 <Container className="px-4 pb-4">
   <View className="py-6 mb-5">
     <Text className="text-3xl font-semibold text-foreground tracking-tight">
-      Better T Stack
+      KPS
     </Text>
     <Text className="text-muted text-sm mt-1">Full-stack TypeScript starter</Text>
   </View>

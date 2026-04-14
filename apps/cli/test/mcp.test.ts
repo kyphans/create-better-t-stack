@@ -7,13 +7,13 @@ import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import fs from "fs-extra";
 
 import { create } from "../src/index";
-import { createBtsMcpServer } from "../src/mcp";
-import { readBtsConfig } from "../src/utils/bts-config";
+import { createKpsMcpServer } from "../src/mcp";
+import { readKpsConfig } from "../src/utils/kps-config";
 import { SMOKE_DIR } from "./setup";
 
 async function connectInMemoryClient() {
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
-  const server = createBtsMcpServer();
+  const server = createKpsMcpServer();
   await server.connect(serverTransport);
 
   const client = new Client({ name: "mcp-test-client", version: "0.0.0" }, { capabilities: {} });
@@ -54,8 +54,8 @@ describe("MCP server", () => {
   let cleanups: Array<() => Promise<void>> = [];
 
   beforeEach(async () => {
-    process.env.BTS_SKIP_EXTERNAL_COMMANDS = "1";
-    process.env.BTS_TEST_MODE = "1";
+    process.env.KPS_SKIP_EXTERNAL_COMMANDS = "1";
+    process.env.KPS_TEST_MODE = "1";
   });
 
   afterEach(async () => {
@@ -78,12 +78,12 @@ describe("MCP server", () => {
     const toolNames = result.tools.map((tool) => tool.name).sort();
 
     expect(toolNames).toEqual([
-      "bts_add_addons",
-      "bts_create_project",
-      "bts_get_schema",
-      "bts_get_stack_guidance",
-      "bts_plan_addons",
-      "bts_plan_project",
+      "kps_add_addons",
+      "kps_create_project",
+      "kps_get_schema",
+      "kps_get_stack_guidance",
+      "kps_plan_addons",
+      "kps_plan_project",
     ]);
   });
 
@@ -92,7 +92,7 @@ describe("MCP server", () => {
     cleanups.push(cleanup);
 
     const result = await client.callTool({
-      name: "bts_get_stack_guidance",
+      name: "kps_get_stack_guidance",
       arguments: {},
     });
 
@@ -136,7 +136,7 @@ describe("MCP server", () => {
     cleanups.push(cleanup);
 
     const result = await client.callTool({
-      name: "bts_get_schema",
+      name: "kps_get_schema",
       arguments: { name: "createInput" },
     });
 
@@ -156,7 +156,7 @@ describe("MCP server", () => {
     cleanups.push(cleanup);
 
     const result = await client.callTool({
-      name: "bts_plan_project",
+      name: "kps_plan_project",
       arguments: {
         projectName: "partial-app",
         frontend: ["next"],
@@ -185,7 +185,7 @@ describe("MCP server", () => {
     await fs.remove(projectPath);
 
     const result = await client.callTool({
-      name: "bts_plan_project",
+      name: "kps_plan_project",
       arguments: getExplicitCreateInput(projectPath),
     });
 
@@ -208,7 +208,7 @@ describe("MCP server", () => {
     await fs.remove(projectPath);
 
     const result = await client.callTool({
-      name: "bts_plan_project",
+      name: "kps_plan_project",
       arguments: {
         ...getExplicitCreateInput(projectPath),
         install: true,
@@ -236,7 +236,7 @@ describe("MCP server", () => {
     await fs.remove(projectPath);
 
     const result = await client.callTool({
-      name: "bts_create_project",
+      name: "kps_create_project",
       arguments: getExplicitCreateInput(projectPath),
     });
 
@@ -250,8 +250,8 @@ describe("MCP server", () => {
     expect(payload.data?.projectDirectory).toBe(projectPath);
     expect(await fs.pathExists(projectPath)).toBe(true);
 
-    const btsConfig = await readBtsConfig(projectPath);
-    expect(btsConfig?.frontend).toEqual(["next"]);
+    const kpsConfig = await readKpsConfig(projectPath);
+    expect(kpsConfig?.frontend).toEqual(["next"]);
   });
 
   it("rejects install=true during MCP project creation with an actionable error", async () => {
@@ -262,7 +262,7 @@ describe("MCP server", () => {
     await fs.remove(projectPath);
 
     const result = await client.callTool({
-      name: "bts_create_project",
+      name: "kps_create_project",
       arguments: {
         ...getExplicitCreateInput(projectPath),
         install: true,
@@ -286,7 +286,7 @@ describe("MCP server", () => {
     await fs.writeFile(path.join(projectPath, "existing.txt"), "hello");
 
     const result = await client.callTool({
-      name: "bts_create_project",
+      name: "kps_create_project",
       arguments: getExplicitCreateInput(projectPath),
     });
 
@@ -296,7 +296,7 @@ describe("MCP server", () => {
     expect(payload.error).toContain("already exists and is not empty");
   });
 
-  it("plans addon installation without mutating bts.jsonc", async () => {
+  it("plans addon installation without mutating kps.jsonc", async () => {
     const { client, cleanup } = await connectInMemoryClient();
     cleanups.push(cleanup);
 
@@ -323,10 +323,10 @@ describe("MCP server", () => {
     });
     expect(createResult.isOk()).toBe(true);
 
-    const before = await readBtsConfig(projectPath);
+    const before = await readKpsConfig(projectPath);
 
     const result = await client.callTool({
-      name: "bts_plan_addons",
+      name: "kps_plan_addons",
       arguments: {
         projectDir: projectPath,
         addons: ["biome"],
@@ -345,11 +345,11 @@ describe("MCP server", () => {
     expect(payload.data?.dryRun).toBe(true);
     expect(payload.data?.addedAddons).toEqual(["biome"]);
 
-    const after = await readBtsConfig(projectPath);
+    const after = await readKpsConfig(projectPath);
     expect(after).toEqual(before);
   });
 
-  it("adds addons through MCP and persists them to bts.jsonc", async () => {
+  it("adds addons through MCP and persists them to kps.jsonc", async () => {
     const { client, cleanup } = await connectInMemoryClient();
     cleanups.push(cleanup);
 
@@ -377,7 +377,7 @@ describe("MCP server", () => {
     expect(createResult.isOk()).toBe(true);
 
     const result = await client.callTool({
-      name: "bts_add_addons",
+      name: "kps_add_addons",
       arguments: {
         projectDir: projectPath,
         addons: ["biome"],
@@ -395,7 +395,7 @@ describe("MCP server", () => {
     expect(payload.data?.success).toBe(true);
     expect(payload.data?.addedAddons).toEqual(["biome"]);
 
-    const after = await readBtsConfig(projectPath);
+    const after = await readKpsConfig(projectPath);
     expect(after?.addons).toEqual(expect.arrayContaining(["turborepo", "biome"]));
   });
 
@@ -409,8 +409,8 @@ describe("MCP server", () => {
       args: [cliEntrypoint, "mcp"],
       cwd: cliRoot,
       env: {
-        BTS_SKIP_EXTERNAL_COMMANDS: "1",
-        BTS_TEST_MODE: "1",
+        KPS_SKIP_EXTERNAL_COMMANDS: "1",
+        KPS_TEST_MODE: "1",
       },
     });
 
@@ -422,11 +422,11 @@ describe("MCP server", () => {
 
     const tools = await client.listTools();
     expect(tools.tools.map((tool) => tool.name)).toEqual(
-      expect.arrayContaining(["bts_get_stack_guidance", "bts_plan_project", "bts_add_addons"]),
+      expect.arrayContaining(["kps_get_stack_guidance", "kps_plan_project", "kps_add_addons"]),
     );
 
     const guidance = await client.callTool({
-      name: "bts_get_stack_guidance",
+      name: "kps_get_stack_guidance",
       arguments: {},
     });
 

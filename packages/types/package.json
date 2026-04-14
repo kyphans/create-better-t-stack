@@ -1,20 +1,19 @@
 {
-  "name": "@better-t-stack/types",
+  "name": "@kps/types",
   "version": "3.27.0",
-  "description": "TypeScript types and schemas for create-better-t-stack CLI",
+  "description": "TypeScript types and schemas for create-kps CLI",
   "keywords": [
-    "better-t-stack",
-    "cli",
-    "schemas",
+    "kps",
     "types",
+    "schema",
     "typescript"
   ],
-  "homepage": "https://better-t-stack.dev/",
+  "homepage": "https://kps.pqky.dev/",
   "license": "MIT",
-  "author": "Aman Varshney",
+  "author": "Ky Phan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AmanVarshney01/create-better-t-stack.git",
+    "url": "git+https://github.com/kyphans/create-kps.git",
     "directory": "packages/types"
   },
   "files": [

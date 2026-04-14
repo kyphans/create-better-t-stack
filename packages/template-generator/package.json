@@ -1,20 +1,18 @@
 {
-  "name": "@better-t-stack/template-generator",
+  "name": "@kps/template-generator",
   "version": "3.27.0",
-  "description": "Virtual file system generator for Better-T-Stack templates - works in browsers and Node.js",
+  "description": "Virtual file system generator for KPS templates through a unified generator interface.",
   "keywords": [
-    "better-t-stack",
-    "cli",
-    "template-generator",
-    "typescript",
-    "virtual-fs"
+    "kps",
+    "generator",
+    "templates"
   ],
-  "homepage": "https://better-t-stack.dev/",
+  "homepage": "https://kps.pqky.dev/",
   "license": "MIT",
-  "author": "Aman Varshney",
+  "author": "Ky Phan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AmanVarshney01/create-better-t-stack.git",
+    "url": "git+https://github.com/kyphans/create-kps.git",
     "directory": "packages/template-generator"
   },
   "files": [
@@ -48,8 +46,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@better-t-stack/types": "^3.27.0",
-    "better-result": "^2.3.0",
+    "@kps/types": "^3.27.0",
+    "better-result": "^2.7.0",
+    "chalk": "^5.4.1",
     "handlebars": "^4.7.8",
     "memfs": "^4.51.1",
     "pathe": "^2.0.3",

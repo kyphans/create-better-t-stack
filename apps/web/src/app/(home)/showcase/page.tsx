@@ -1,32 +1,32 @@
 export const dynamic = "force-static";
 
-import { api } from "@better-t-stack/backend/convex/_generated/api";
+import { api } from "@kps/backend/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
 import type { Metadata } from "next";
 
 import { ShowcasePage } from "./_components/showcase-page";
 
 export const metadata: Metadata = {
-  title: "Showcase - Better-T-Stack",
-  description: "Projects created with Better-T-Stack",
+  title: "Showcase - KPS",
+  description: "Projects created with KPS",
   openGraph: {
-    title: "Showcase - Better-T-Stack",
-    description: "Projects created with Better-T-Stack",
-    url: "https://better-t-stack.dev/showcase",
+    title: "Showcase - KPS",
+    description: "Projects created with KPS",
+    url: "https://kps.pqky.dev/showcase",
     images: [
       {
-        url: "https://r2.better-t-stack.dev/og.png",
+        url: "https://r2.kps.pqky.dev/og.png",
         width: 1200,
         height: 630,
-        alt: "Better-T-Stack Showcase",
+        alt: "KPS Showcase",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Showcase - Better-T-Stack",
-    description: "Projects created with Better-T-Stack",
-    images: ["https://r2.better-t-stack.dev/og.png"],
+    title: "Showcase - KPS",
+    description: "Projects created with KPS",
+    images: ["https://r2.kps.pqky.dev/og.png"],
   },
 };
 

@@ -1,6 +1,6 @@
 import type { TechCategory } from "./types";
 
-export const ICON_BASE_URL = "https://r2.better-t-stack.dev/icons";
+export const ICON_BASE_URL = "https://r2.kps.pqky.dev/icons";
 
 export const TECH_OPTIONS: Record<
   TechCategory,
@@ -680,7 +680,7 @@ export const PRESET_TEMPLATES = [
     name: "MERN Stack",
     description: "MongoDB + Express + React + Node.js - Classic MERN stack",
     stack: {
-      projectName: "my-better-t-app",
+      projectName: "my-kps-app",
       webFrontend: ["react-router"],
       nativeFrontend: ["none"],
       runtime: "node",
@@ -706,7 +706,7 @@ export const PRESET_TEMPLATES = [
     name: "PERN Stack",
     description: "PostgreSQL + Express + React + Node.js - Popular PERN stack",
     stack: {
-      projectName: "my-better-t-app",
+      projectName: "my-kps-app",
       webFrontend: ["tanstack-router"],
       nativeFrontend: ["none"],
       runtime: "node",
@@ -732,7 +732,7 @@ export const PRESET_TEMPLATES = [
     name: "T3 Stack",
     description: "Next.js + tRPC + Prisma + PostgreSQL + Better Auth",
     stack: {
-      projectName: "my-better-t-app",
+      projectName: "my-kps-app",
       webFrontend: ["next"],
       nativeFrontend: ["none"],
       runtime: "none",
@@ -758,7 +758,7 @@ export const PRESET_TEMPLATES = [
     name: "Uniwind Native",
     description: "Expo + Uniwind native app with no backend services",
     stack: {
-      projectName: "my-better-t-app",
+      projectName: "my-kps-app",
       webFrontend: ["none"],
       nativeFrontend: ["native-uniwind"],
       runtime: "none",
@@ -804,7 +804,7 @@ export type StackState = {
 };
 
 export const DEFAULT_STACK: StackState = {
-  projectName: "my-better-t-app",
+  projectName: "my-kps-app",
   webFrontend: ["tanstack-router"],
   nativeFrontend: ["none"],
   runtime: "bun",

@@ -1,18 +1,18 @@
 # Cấu trúc dự án
 
-Dự án `create-better-t-stack` được xây dựng theo kiến trúc **Monorepo**, tận dụng sức mạnh của **Bun** và **Turborepo** để quản lý các ứng dụng và thư viện dùng chung trong cùng một hệ sinh thái.
+Dự án `create-kps` được xây dựng theo kiến trúc **Monorepo**, tận dụng sức mạnh của **Bun** và **Turborepo** để quản lý các ứng dụng và thư viện dùng chung trong cùng một hệ sinh thái.
 
 ## 1. Ứng dụng (Apps)
 
 - `apps/cli`:
-  - **Mô tả**: Đây là ứng dụng Command Line Interface (CLI) chính được phân phối qua npm (`create-better-t-stack`).
+  - **Mô tả**: Đây là ứng dụng Command Line Interface (CLI) chính được phân phối qua npm (`create-kps`).
   - **Nhiệm vụ**: Tương tác với người dùng qua console (thông qua CLI prompt), nhận các tham số (arguments & flags), điều phối logic và gọi các template generator để tạo dự án mới hoặc cấu hình addon.
   - **Cấu trúc con**: Có `src/` (chứa các commands, prompts, utilities) và `test/`.
 
 - `apps/web`:
   - **Mô tả**: Ứng dụng Web / Document Site.
   - **Công nghệ**: Next.js.
-  - **Nhiệm vụ**: Chứa toàn bộ tài liệu tĩnh (documentation) và giao diện trực quan hỗ trợ khởi tạo project (Visual Stack Builder). Trang web này được host tại `better-t-stack.dev`.
+  - **Nhiệm vụ**: Chứa toàn bộ tài liệu tĩnh (documentation) và giao diện trực quan hỗ trợ khởi tạo project (Visual Stack Builder). Trang web này được host tại `kps.pqky.dev`.
 
 ## 2. Gói thư viện (Packages)
 
@@ -30,7 +30,7 @@ Dự án `create-better-t-stack` được xây dựng theo kiến trúc **Monore
 
 ## Tổng kết sơ đồ cây
 ```
-better-t-stack/
+kps/
 ├── apps/
 │   ├── cli/                   # Mã nguồn CLI chính
 │   └── web/                   # Website & Tài liệu (Next.js)

@@ -1,0 +1,47 @@
+{
+  "name": "kps",
+  "version": "3.27.0",
+  "description": "A modern CLI tool for scaffolding end-to-end type-safe TypeScript projects with best practices and customizable configurations (alias for create-kps)",
+  "keywords": [
+    "better-auth",
+    "kps",
+    "create-kps",
+    "monorepo",
+    "typescript"
+  ],
+  "homepage": "https://kps.pqky.dev/",
+  "license": "MIT",
+  "author": "Ky Phan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmanVarshney01/create-better-t-stack.git",
+    "directory": "packages/create-kps"
+  },
+  "bin": {
+    "kps": "cli.js"
+  },
+  "files": [
+    "cli.js",
+    "index.d.ts",
+    "index.js"
+  ],
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    },
+    "./cli": {
+      "import": "./cli.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "create-kps": "^3.27.0"
+  }
+}

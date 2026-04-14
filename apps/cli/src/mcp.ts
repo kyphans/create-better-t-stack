@@ -58,7 +58,7 @@ const McpCreateProjectInputSchema = CreateInputSchema.safeExtend({
   dbSetupOptions: DbSetupOptionsSchema.optional(),
   directoryConflict: DirectoryConflictSchema.optional(),
 }).describe(
-  "Explicit Better T Stack project configuration for MCP use. Provide the full stack config instead of relying on inferred defaults.",
+  "Explicit KPS project configuration for MCP use. Provide the full stack config instead of relying on inferred defaults.",
 );
 
 function formatToolSuccess(data: unknown) {
@@ -112,11 +112,11 @@ function getMcpInstallTimeoutMessage(packageManager: string) {
 function getStackGuidance() {
   return {
     workflow: [
-      "Call bts_get_schema or bts_get_stack_guidance before constructing a config if the request is ambiguous.",
-      "For project creation, build a full explicit config before calling bts_plan_project.",
-      "Always call bts_plan_project before bts_create_project.",
-      "Only call bts_create_project after the plan succeeds and matches the user's intent.",
-      "Use bts_plan_addons before bts_add_addons for existing projects.",
+      "Call kps_get_schema or kps_get_stack_guidance before constructing a config if the request is ambiguous.",
+      "For project creation, build a full explicit config before calling kps_plan_project.",
+      "Always call kps_plan_project before kps_create_project.",
+      "Only call kps_create_project after the plan succeeds and matches the user's intent.",
+      "Use kps_plan_addons before kps_add_addons for existing projects.",
     ],
     createContract: {
       requiresExplicitFields: [
@@ -139,7 +139,7 @@ function getStackGuidance() {
         "serverDeploy",
       ],
       optionalFields: ["addonOptions", "dbSetupOptions", "directoryConflict"],
-      rule: "Do not call bts_plan_project or bts_create_project with a partial payload. MCP project creation requires the full explicit stack config.",
+      rule: "Do not call kps_plan_project or kps_create_project with a partial payload. MCP project creation requires the full explicit stack config.",
     },
     fieldNotes: {
       frontend:
@@ -159,7 +159,7 @@ function getStackGuidance() {
       git: "git is always required. Set it to true or false explicitly instead of relying on defaults.",
     },
     ambiguityRules: [
-      "If the user request leaves major stack choices unspecified, stop and resolve them before calling bts_plan_project.",
+      "If the user request leaves major stack choices unspecified, stop and resolve them before calling kps_plan_project.",
       "Do not infer extra app surfaces, addons, examples, or provisioning choices from a template name or styling preference.",
       "If the user wants the smallest valid stack, still send the full config with explicit 'none', [] , true, or false values where appropriate.",
       "For MCP execution, scaffold with install=false and let the user or agent run dependency installation separately from a terminal session.",
@@ -167,10 +167,10 @@ function getStackGuidance() {
   };
 }
 
-export function createBtsMcpServer() {
+export function createKpsMcpServer() {
   const server = new McpServer(
     {
-      name: "create-better-t-stack",
+      name: "create-kps",
       version: getLatestCLIVersion(),
     },
     {
@@ -181,15 +181,15 @@ export function createBtsMcpServer() {
   );
 
   server.registerTool(
-    "bts_get_stack_guidance",
+    "kps_get_stack_guidance",
     {
-      title: "Get Better T Stack MCP Guidance",
+      title: "Get KPS MCP Guidance",
       description:
-        "Read MCP-specific guidance for choosing valid Better T Stack configurations. Use this before planning when user intent is ambiguous. This explains the full explicit config required by MCP project creation, plus important field semantics and ambiguity rules.",
+        "Read MCP-specific guidance for choosing valid KPS configurations. Use this before planning when user intent is ambiguous. This explains the full explicit config required by MCP project creation, plus important field semantics and ambiguity rules.",
       inputSchema: z.object({}),
       outputSchema: ToolResponseSchema,
       annotations: {
-        title: "Get Better T Stack MCP Guidance",
+        title: "Get KPS MCP Guidance",
         readOnlyHint: true,
         destructiveHint: false,
         idempotentHint: true,
@@ -206,17 +206,17 @@ export function createBtsMcpServer() {
   );
 
   server.registerTool(
-    "bts_get_schema",
+    "kps_get_schema",
     {
-      title: "Get Better T Stack Schemas",
+      title: "Get KPS Schemas",
       description:
-        "Inspect Better T Stack CLI and input schemas so agents can plan valid create/add requests. Use this together with bts_get_stack_guidance before creating a project if any part of the request is ambiguous.",
+        "Inspect KPS CLI and input schemas so agents can plan valid create/add requests. Use this together with kps_get_stack_guidance before creating a project if any part of the request is ambiguous.",
       inputSchema: z.object({
         name: SchemaNameSchema.optional().describe("Schema name to inspect. Defaults to all."),
       }),
       outputSchema: ToolResponseSchema,
       annotations: {
-        title: "Get Better T Stack Schemas",
+        title: "Get KPS Schemas",
         readOnlyHint: true,
         destructiveHint: false,
         idempotentHint: true,
@@ -233,15 +233,15 @@ export function createBtsMcpServer() {
   );
 
   server.registerTool(
-    "bts_plan_project",
+    "kps_plan_project",
     {
-      title: "Plan Better T Stack Project",
+      title: "Plan KPS Project",
       description:
-        "Validate and preview a Better T Stack project creation without writing files or provisioning resources. Always use this before bts_create_project. This tool requires an explicit full stack config rather than a partial payload with inferred defaults.",
+        "Validate and preview a KPS project creation without writing files or provisioning resources. Always use this before kps_create_project. This tool requires an explicit full stack config rather than a partial payload with inferred defaults.",
       inputSchema: McpCreateProjectInputSchema,
       outputSchema: ToolResponseSchema,
       annotations: {
-        title: "Plan Better T Stack Project",
+        title: "Plan KPS Project",
         readOnlyHint: true,
         destructiveHint: false,
         idempotentHint: true,
@@ -279,15 +279,15 @@ export function createBtsMcpServer() {
   );
 
   server.registerTool(
-    "bts_create_project",
+    "kps_create_project",
     {
-      title: "Create Better T Stack Project",
+      title: "Create KPS Project",
       description:
-        "Create a Better T Stack project on disk using the same silent programmatic flow as the CLI JSON API. Call this only after bts_plan_project succeeds and the plan clearly matches the user's intent. This tool requires an explicit full stack config.",
+        "Create a KPS project on disk using the same silent programmatic flow as the CLI JSON API. Call this only after kps_plan_project succeeds and the plan clearly matches the user's intent. This tool requires an explicit full stack config.",
       inputSchema: McpCreateProjectInputSchema,
       outputSchema: ToolResponseSchema,
       annotations: {
-        title: "Create Better T Stack Project",
+        title: "Create KPS Project",
         ...getProjectToolAnnotations(),
       },
     },
@@ -314,15 +314,15 @@ export function createBtsMcpServer() {
   );
 
   server.registerTool(
-    "bts_plan_addons",
+    "kps_plan_addons",
     {
-      title: "Plan Better T Stack Addons",
+      title: "Plan KPS Addons",
       description:
-        "Validate and preview addon installation for an existing Better T Stack project without writing files. Always use this before bts_add_addons when the addon set or nested options are uncertain.",
+        "Validate and preview addon installation for an existing KPS project without writing files. Always use this before kps_add_addons when the addon set or nested options are uncertain.",
       inputSchema: AddInputSchema,
       outputSchema: ToolResponseSchema,
       annotations: {
-        title: "Plan Better T Stack Addons",
+        title: "Plan KPS Addons",
         readOnlyHint: true,
         destructiveHint: false,
         idempotentHint: true,
@@ -348,15 +348,15 @@ export function createBtsMcpServer() {
   );
 
   server.registerTool(
-    "bts_add_addons",
+    "kps_add_addons",
     {
-      title: "Add Better T Stack Addons",
+      title: "Add KPS Addons",
       description:
-        "Install addons into an existing Better T Stack project using the same silent flow as add-json. Call this only after bts_plan_addons succeeds and the planned changes match the user's intent.",
+        "Install addons into an existing KPS project using the same silent flow as add-json. Call this only after kps_plan_addons succeeds and the planned changes match the user's intent.",
       inputSchema: AddInputSchema,
       outputSchema: ToolResponseSchema,
       annotations: {
-        title: "Add Better T Stack Addons",
+        title: "Add KPS Addons",
         destructiveHint: true,
         idempotentHint: false,
         openWorldHint: true,
@@ -380,8 +380,8 @@ export function createBtsMcpServer() {
   return server;
 }
 
-export async function startBtsMcpServer() {
-  const server = createBtsMcpServer();
+export async function startKpsMcpServer() {
+  const server = createKpsMcpServer();
   const transport = new StdioServerTransport();
   await server.connect(transport);
 }

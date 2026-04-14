@@ -1,10 +1,9 @@
 {
-  "name": "create-better-t-stack",
+  "name": "create-kps",
   "version": "3.27.0",
-  "description": "A modern CLI tool for scaffolding end-to-end type-safe TypeScript projects with best practices and customizable configurations",
+  "description": "A feature-rich, enterprise-ready TypeScript fullstack starter kit with modern stack options.",
   "keywords": [
-    "better-auth",
-    "better-t-stack",
+    "kps",
     "biome",
     "boilerplate",
     "cli",
@@ -26,18 +25,18 @@
     "trpc",
     "turborepo",
     "type-safety",
-    "typescript"
+    "scaffold"
   ],
-  "homepage": "https://better-t-stack.dev/",
+  "homepage": "https://kps.pqky.dev/",
   "license": "MIT",
-  "author": "Aman Varshney",
+  "author": "Ky Phan",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AmanVarshney01/create-better-t-stack.git",
     "directory": "apps/cli"
   },
   "bin": {
-    "create-better-t-stack": "dist/cli.mjs"
+    "create-kps": "dist/cli.mjs"
   },
   "files": [
     "dist"
@@ -70,8 +69,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@better-t-stack/template-generator": "workspace:*",
-    "@better-t-stack/types": "workspace:*",
+    "@kps/template-generator": "workspace:*",
+    "@kps/types": "workspace:*",
     "@clack/core": "^1.1.0",
     "@clack/prompts": "^1.1.0",
     "@modelcontextprotocol/sdk": "1.27.1",

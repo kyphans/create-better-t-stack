@@ -1,30 +1,30 @@
-import { api } from "@better-t-stack/backend/convex/_generated/api";
+import { api } from "@kps/backend/convex/_generated/api";
 import { preloadQuery } from "convex/nextjs";
 import type { Metadata } from "next";
 
 import { AnalyticsClient } from "./analytics-client";
 
 export const metadata: Metadata = {
-  title: "Analytics - Better-T-Stack",
-  description: "Convex-backed project creation analytics for Better-T-Stack.",
+  title: "Analytics - KPS",
+  description: "Convex-backed project creation analytics for KPS.",
   openGraph: {
-    title: "Analytics - Better-T-Stack",
-    description: "Convex-backed project creation analytics for Better-T-Stack.",
-    url: "https://better-t-stack.dev/analytics",
+    title: "Analytics - KPS",
+    description: "Convex-backed project creation analytics for KPS.",
+    url: "https://kps.pqky.dev/analytics",
     images: [
       {
-        url: "https://r2.better-t-stack.dev/og.png",
+        url: "https://r2.kps.pqky.dev/og.png",
         width: 1200,
         height: 630,
-        alt: "Better-T-Stack Convex Analytics",
+        alt: "KPS Convex Analytics",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Analytics - Better-T-Stack",
-    description: "Convex-backed project creation analytics for Better-T-Stack.",
-    images: ["https://r2.better-t-stack.dev/og.png"],
+    title: "Analytics - KPS",
+    description: "Convex-backed project creation analytics for KPS.",
+    images: ["https://r2.kps.pqky.dev/og.png"],
   },
 };
 

@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="mb-3 flex items-center gap-2 font-semibold font-mono text-base text-foreground sm:mb-4">
               <Terminal className="h-4 w-4 text-primary" />
-              <span>BETTER_T_STACK.INFO</span>
+              <span>KPS.INFO</span>
             </h3>
             <p className="mb-4 font-mono text-muted-foreground text-sm leading-relaxed sm:mb-6 sm:text-base lg:pr-4">
               Type-safe, modern TypeScript scaffolding for full-stack web development
@@ -27,7 +27,7 @@ const Footer = () => {
                 <Github size={20} />
               </Link>
               <Link
-                href="https://www.npmjs.com/package/create-better-t-stack"
+                href="https://www.npmjs.com/package/create-kps"
                 target="_blank"
                 className="inline-flex items-center justify-center rounded border border-border p-2 text-muted-foreground invert-0 transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:invert"
                 aria-label="NPM Package"
@@ -54,7 +54,7 @@ const Footer = () => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://www.npmjs.com/package/create-better-t-stack"
+                  href="https://www.npmjs.com/package/create-kps"
                   className="inline-block transition-colors hover:text-primary focus:text-primary focus:outline-none"
                 >
                   NPM Package
@@ -63,7 +63,7 @@ const Footer = () => {
               <li>
                 <Link
                   target="_blank"
-                  href="https://my-better-t-app-client.pages.dev/"
+                  href="https://my-kps-app.pqky.dev/"
                   className="inline-block transition-colors hover:text-primary focus:text-primary focus:outline-none"
                 >
                   Demo Application
@@ -92,7 +92,7 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-between gap-4 border-border border-t pt-6 sm:flex-row sm:gap-6 sm:pt-8">
           <p className="text-center font-mono text-muted-foreground text-xs sm:text-left sm:text-sm">
-            © {new Date().getFullYear()} Better-T-Stack. All rights reserved.
+            © {new Date().getFullYear()} KPS. All rights reserved.
           </p>
           <p className="flex items-center gap-1.5 font-mono text-muted-foreground text-xs sm:text-sm">
             <span className="text-primary">$</span> Built with{" "}

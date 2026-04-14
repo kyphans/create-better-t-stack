@@ -1,6 +1,6 @@
-import { generate, type VirtualNode } from "@better-t-stack/template-generator";
-import { EMBEDDED_TEMPLATES } from "@better-t-stack/template-generator";
-import type { ProjectConfig } from "@better-t-stack/types";
+import { generate, type VirtualNode } from "@kps/template-generator";
+import { EMBEDDED_TEMPLATES } from "@kps/template-generator";
+import type { ProjectConfig } from "@kps/types";
 import { NextResponse } from "next/server";
 
 import type { StackState } from "@/lib/constant";
@@ -99,7 +99,7 @@ function stackStateToConfig(state: StackState): ProjectConfig {
   const git = normalizeBoolean(state.git, false);
 
   return {
-    projectName: state.projectName || "my-better-t-app",
+    projectName: state.projectName || "my-kps-app",
     projectDir: "/virtual",
     relativePath: "./virtual",
     database: (state.database || "none") as ProjectConfig["database"],

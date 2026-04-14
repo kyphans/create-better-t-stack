@@ -1,5 +1,5 @@
 # Hướng dẫn tạo mới Utilities & Extensions (Addons)
-Addon là các module cắm ngoài không bắt buộc (chẳng hạn Linter, thư viện Logging, Git Hooks, TailwindCSS...). CLI `better-t-stack` cung cấp lệnh thần thánh `add` (`bun create-... add <tên-addon>`) để cài Addon vào ngay cả khi Project gốc đã được tạo xong từ lâu.
+Addon là các module cắm ngoài không bắt buộc (chẳng hạn Linter, thư viện Logging, Git Hooks, TailwindCSS...). CLI `kps` cung cấp lệnh thần thánh `add` (`bun create-... add <tên-addon>`) để cài Addon vào ngay cả khi Project gốc đã được tạo xong từ lâu.
 
 Dưới đây là cách bạn phát triển một Addon mới, giả sử lấy ví dụ tạo Addon **"sentry"** (tool log mã lỗi mạng).
 

@@ -1,6 +1,6 @@
 # Các thành phần cốt lõi của dự án
 
-Dự án `better-t-stack` mang triết lý **"Roll your own stack"** (tự xây dựng bộ công cụ theo ý muốn), nên bản thân nó bao gồm nhiều khối cấu thành (components/modules) tuỳ chọn:
+Dự án `kps` mang triết lý **"Roll your own stack"** (tự xây dựng bộ công cụ theo ý muốn), nên bản thân nó bao gồm nhiều khối cấu thành (components/modules) tuỳ chọn:
 
 ## 1. Frontend Frameworks
 Hỗ trợ tạo giao diện người dùng hiển thị đa nền tảng và tối ưu hóa trải nghiệm:

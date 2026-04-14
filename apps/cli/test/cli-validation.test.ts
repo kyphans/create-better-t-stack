@@ -2,13 +2,13 @@ import { expect, test } from "bun:test";
 
 import { FailedToExitError } from "trpc-cli";
 
-import { createBtsCli } from "../src/index";
+import { createKpsCli } from "../src/index";
 import { getProvidedFlags, processAndValidateFlags } from "../src/validation";
 
 test("surfaces a friendly validation error for invalid addons", async () => {
   const logs: string[] = [];
 
-  const result = await createBtsCli()
+  const result = await createKpsCli()
     .run({
       argv: ["create", "ryu", "--addons", "ruler"],
       logger: {

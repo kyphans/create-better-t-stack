@@ -1,4 +1,4 @@
-import { getAllJsonSchemas } from "@better-t-stack/types/json-schema";
+import { getAllJsonSchemas } from "@kps/types/json-schema";
 import { initTRPC } from "@trpc/server";
 import { Result } from "better-result";
 import { createCli, type TrpcCliMeta } from "trpc-cli";
@@ -21,7 +21,7 @@ import {
   AuthSchema,
   type Backend,
   BackendSchema,
-  type BetterTStackConfig,
+  type KpsConfig,
   type CLIInput,
   type CreateInput,
   CreateInputSchema,
@@ -82,7 +82,7 @@ export const SchemaNameSchema = z
     "createInput",
     "addInput",
     "projectConfig",
-    "betterTStackConfig",
+    "kpsConfig",
     "initResult",
   ])
   .default("all");
@@ -94,7 +94,7 @@ const t = initTRPC.meta<TrpcCliMeta>().create();
 function getCliSchemaJson(): unknown {
   return createCli({
     router,
-    name: "create-better-t-stack",
+    name: "create-kps",
     version: getLatestCLIVersion(),
   }).toJSON();
 }
@@ -116,7 +116,7 @@ export function getSchemaResult(name: SchemaName): unknown {
 export const router = t.router({
   create: t.procedure
     .meta({
-      description: "Create a new Better-T-Stack project",
+      description: "Create a new KPS project",
       default: true,
       negateBooleans: true,
     })
@@ -210,16 +210,16 @@ export const router = t.router({
     )
     .query(({ input }) => getSchemaResult(input.name)),
   sponsors: t.procedure
-    .meta({ description: "Show Better-T-Stack sponsors" })
+    .meta({ description: "Show KPS sponsors" })
     .mutation(() => showSponsorsCommand()),
   docs: t.procedure
-    .meta({ description: "Open Better-T-Stack documentation" })
+    .meta({ description: "Open KPS documentation" })
     .mutation(() => openDocsCommand()),
   builder: t.procedure
     .meta({ description: "Open the web-based stack builder" })
     .mutation(() => openBuilderCommand()),
   add: t.procedure
-    .meta({ description: "Add addons to an existing Better-T-Stack project" })
+    .meta({ description: "Add addons to an existing KPS project" })
     .input(
       z.object({
         addons: z.array(AddonsSchema).optional().describe("Addons to add"),
@@ -267,10 +267,13 @@ export const router = t.router({
     }),
 });
 
-export function createBtsCli(): ReturnType<typeof createCli> {
+/**
+ * Entry point for the create-kps CLI.
+ */
+export function createKpsCli(): ReturnType<typeof createCli> {
   return createCli({
     router,
-    name: "create-better-t-stack",
+    name: "create-kps",
     version: getLatestCLIVersion(),
   });
 }
@@ -284,12 +287,12 @@ export { Result } from "better-result";
 export type CreateError = UserCancelledError | CLIError | ProjectCreationError;
 
 /**
- * Programmatic API to create a new Better-T-Stack project.
+ * Programmatic API to create a new KPS project.
  * Returns a Result type - no console output, no interactive prompts.
  *
  * @example
  * ```typescript
- * import { create, Result } from "create-better-t-stack";
+ * import { create, Result } from "create-kps";
  *
  * const result = await create("my-app", {
  *   frontend: ["tanstack-router"],
@@ -369,26 +372,30 @@ export {
   type GeneratorOptions,
   GeneratorError,
   generate,
-  EMBEDDED_TEMPLATES,
-  TEMPLATE_COUNT,
-} from "@better-t-stack/template-generator";
+} from "@kps/template-generator";
 
 // Import for createVirtual
 import {
   generate,
   GeneratorError,
   type VirtualFileTree,
-  EMBEDDED_TEMPLATES,
-} from "@better-t-stack/template-generator";
+} from "@kps/template-generator";
+
+import {
+  EMBEDDED_TEMPLATES as _EMBEDDED_TEMPLATES,
+  writeKpsConfigToVfs,
+  generateReproducibleCommand,
+} from "@kps/template-generator";
+
+import { VirtualFileSystem } from "@kps/template-generator";
 
 /**
- * Programmatic API to generate a project in-memory (virtual filesystem).
- * Returns a Result with a VirtualFileTree without writing to disk.
- * Useful for web previews and testing.
+ * Programmatic API to create a new virtual project representation
+ * without writing to the physical filesystem.
  *
  * @example
  * ```typescript
- * import { createVirtual, EMBEDDED_TEMPLATES, Result } from "create-better-t-stack";
+ * import { createVirtual, EMBEDDED_TEMPLATES, Result } from "create-kps";
  *
  * const result = await createVirtual({
  *   frontend: ["tanstack-router"],
@@ -470,7 +477,7 @@ export async function createVirtual(
 export type {
   CreateInput,
   InitResult,
-  BetterTStackConfig,
+  KpsConfig,
   Database,
   ORM,
   Backend,
@@ -494,11 +501,11 @@ export type {
 export type { AddResult };
 
 /**
- * Programmatic API to add addons to an existing Better-T-Stack project.
+ * Programmatic API to add addons to an existing KPS project.
  *
  * @example
  * ```typescript
- * import { add } from "create-better-t-stack";
+ * import { add } from "create-kps";
  *
  * const result = await add({
  *   addons: ["biome", "husky"],

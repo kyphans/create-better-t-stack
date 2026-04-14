@@ -1,5 +1,5 @@
 # Hướng dẫn Custom (Tạo mới) Frontend Framework
-Tài liệu này sẽ hướng dẫn bạn các bước để thêm một tuỳ chọn Frontend framework hoàn toàn mới (ví dụ thư viện `vue` hoặc `preact`) vào hệ sinh thái của `create-better-t-stack`.
+Tài liệu này sẽ hướng dẫn bạn các bước để thêm một tuỳ chọn Frontend framework hoàn toàn mới (ví dụ thư viện `vue` hoặc `preact`) vào hệ sinh thái của `create-kps`.
 
 ## Bước 1: Khai báo Schema (Tại `packages/types`)
 Để cả hệ thống (từ ứng dụng CLI, đến tài liệu Web) hiểu được định dạng mới của bạn, bạn cần định nghĩa nó trong Zod.
@@ -17,7 +17,7 @@ export const FrontendSchema = z
 ```
 
 ## Bước 2: Thêm Lựa chọn vào CLI Prompts
-Bạn cần để cho người dùng khi gõ `bun create-better-t-stack` có thể chọn Framework bằng phím mũi tên.
+Bạn cần để cho người dùng khi gõ `bun create-kps` có thể chọn Framework bằng phím mũi tên.
 Mở file xử lý prompt (thường nằm ở `apps/cli/src/prompts/` hoặc logic tương đương xử lý hỏi frontend):
 Chèn mục chọn tương ứng cho `"vue"` với title và mô tả trực quan.
 
@@ -57,4 +57,4 @@ Nếu Frontend mới của bạn cần thay đổi một số lệnh build ở t
 
 ## Bước 5: Build và Test cục bộ
 - Chạy `bun run check` để đảm bảo code linter không báo lỗi Zod.
-- Ở terminal `create-better-t-stack` gốc, chạy thủ công lệnh `bun dev:cli` để sử dụng CLI test (nếu prompt hiện lên và render code tạo thành folder dự án đủ file Vue là hoàn tất!).
+- Ở terminal `create-kps` gốc, chạy thủ công lệnh `bun dev:cli` để sử dụng CLI test (nếu prompt hiện lên và render code tạo thành folder dự án đủ file Vue là hoàn tất!).

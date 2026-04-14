@@ -4,7 +4,7 @@ import { $ } from "execa";
 import pc from "picocolors";
 
 import type { AddonOptions, ProjectConfig } from "../../types";
-import { readBtsConfig } from "../../utils/bts-config";
+import { readKpsConfig } from "../../utils/kps-config";
 import { isSilent } from "../../utils/context";
 import { AddonSetupError, UserCancelledError } from "../../utils/errors";
 import { shouldSkipExternalCommands } from "../../utils/external-commands";
@@ -329,13 +329,13 @@ export async function setupSkills(
 
   const { packageManager, projectDir } = config;
 
-  // Load full config from bts.jsonc to get all addons (existing + new)
-  const btsConfig = await readBtsConfig(projectDir);
-  const fullConfig: ProjectConfig = btsConfig
+  // Load full config from kps.jsonc to get all addons (existing + new)
+  const kpsConfig = await readKpsConfig(projectDir);
+  const fullConfig: ProjectConfig = kpsConfig
     ? {
         ...config,
-        addons: btsConfig.addons ?? config.addons,
-        addonOptions: btsConfig.addonOptions ?? config.addonOptions,
+        addons: kpsConfig.addons ?? config.addons,
+        addonOptions: kpsConfig.addonOptions ?? config.addonOptions,
       }
     : config;
 

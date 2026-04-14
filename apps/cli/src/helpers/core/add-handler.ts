@@ -5,8 +5,8 @@ import {
   processAddonTemplates,
   processAddonsDeps,
   VirtualFileSystem,
-} from "@better-t-stack/template-generator";
-import { writeTree } from "@better-t-stack/template-generator/fs-writer";
+} from "@kps/template-generator";
+import { writeTree } from "@kps/template-generator/fs-writer";
 import { intro, log, outro } from "@clack/prompts";
 import { Result } from "better-result";
 import fs from "fs-extra";
@@ -14,7 +14,7 @@ import pc from "picocolors";
 
 import { getAddonsToAdd } from "../../prompts/addons";
 import type { AddInput, Addons, AddonOptions, ProjectConfig } from "../../types";
-import { updateBtsConfig } from "../../utils/bts-config";
+import { updateKpsConfig } from "../../utils/kps-config";
 import { isSilent, runWithContextAsync } from "../../utils/context";
 import { CLIError, UserCancelledError, displayError } from "../../utils/errors";
 import { validateAgentSafePathInput } from "../../utils/input-hardening";
@@ -126,7 +126,7 @@ async function addHandlerInternal(
 
   if (!isSilent()) {
     renderTitle();
-    intro(pc.magenta("Add addons to your Better-T-Stack project"));
+    intro(pc.magenta("Add addons to your KPS project"));
   }
 
   // Detect existing project configuration
@@ -135,7 +135,7 @@ async function addHandlerInternal(
   if (!existingConfig) {
     return Result.err(
       new CLIError({
-        message: `No Better-T-Stack project found in ${projectDir}. Make sure bts.jsonc exists.`,
+        message: `No KPS project found in ${projectDir}. Make sure kps.jsonc exists.`,
       }),
     );
   }
@@ -312,8 +312,8 @@ async function addHandlerInternal(
     return Result.err(setupResult.error);
   }
 
-  // Update bts.jsonc with new addons
-  await updateBtsConfig(projectDir, {
+  // Update kps.jsonc with new addons
+  await updateKpsConfig(projectDir, {
     addons: updatedAddons,
     addonOptions: config.addonOptions,
   });

@@ -24,7 +24,7 @@ import type {
   AddInputSchema,
   CLIInputSchema,
   ProjectConfigSchema,
-  BetterTStackConfigSchema,
+  KpsConfigSchema,
   InitResultSchema,
 } from "./schemas";
 
@@ -53,7 +53,7 @@ export type CreateInput = z.infer<typeof CreateInputSchema>;
 export type AddInput = z.infer<typeof AddInputSchema>;
 export type CLIInput = z.infer<typeof CLIInputSchema>;
 export type ProjectConfig = z.infer<typeof ProjectConfigSchema>;
-export type BetterTStackConfig = z.infer<typeof BetterTStackConfigSchema>;
+export type KpsConfig = z.infer<typeof KpsConfigSchema>;
 export type InitResult = z.infer<typeof InitResultSchema>;
 
 export type WebFrontend = Extract<
