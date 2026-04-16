@@ -1,4 +1,4 @@
-import type { KPSConfig, ProjectConfig } from "@kps/types";
+import type { KpsConfig, ProjectConfig } from "@kps/types";
 
 import type { VirtualFileSystem } from "./core/virtual-fs";
 
@@ -14,7 +14,7 @@ export function writeKpsConfigToVfs(
   version: string,
   reproducibleCommand?: string,
 ): void {
-  const kpsConfig: KPSConfig = {
+  const kpsConfig: KpsConfig = {
     version,
     createdAt: new Date().toISOString(),
     reproducibleCommand,
