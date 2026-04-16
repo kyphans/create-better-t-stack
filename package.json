@@ -14,8 +14,6 @@
     "dev": "turbo run dev",
     "dev:cli": "turbo run dev --filter=create-kps",
     "cli": "cd apps/cli && node dist/cli.js",
-    "dev:web": "turbo run dev --filter=web",
-    "build:web": "turbo run build --filter=web",
     "build:cli": "turbo run build --filter=create-kps",
     "lint": "turbo run lint",
     "check": "oxfmt . && oxlint .",
@@ -23,11 +21,7 @@
     "release": "bun run scripts/release.ts",
     "bump": "bun run scripts/bump-version.ts",
     "canary": "bun run scripts/canary-release.ts",
-    "cleanup-previews": "bun run scripts/cleanup-previews.ts",
-    "deploy:convex": "turbo run --filter=@kps/backend deploy",
-    "deploy:web": "turbo run deploy --filter=web",
-    "generate": "turbo run generate-schema --filter=web",
-    "deploy": "turbo run deploy --filter=web"
+    "cleanup-previews": "bun run scripts/cleanup-previews.ts"
   },
   "dependencies": {
     "@clack/prompts": "^1.1.0"
