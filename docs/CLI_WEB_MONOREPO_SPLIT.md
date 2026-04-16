@@ -24,68 +24,71 @@ Chuyên dùng làm trang tài liệu (Docs), landing page hệ sinh thái và ba
 
 ---
 
-## 2. Các bước thực hiện tách Repo (Giữ nguyên lịch sử Git)
+## 2. Các bước thực hiện chia tách bằng Nhánh (Branch)
 
-Quy trình an toàn nhất để vẫn **giữ nguyên lịch sử commit (git history)** cho các file là nhân bản repository hiện tại thành 2 bản sao độc lập, xóa những module không liên quan ở mỗi bản phân bản và push lên Repo mới.
+Quy trình an toàn nhất để vẫn **giữ nguyên lịch sử commit (git history)** cho các file là tạo 2 nhánh nhánh khép kín (nhánh CLI và nhánh Web) ngay tại repository hiện tại. Sau đó, ở mỗi nhánh tiến hành xóa/clean các file không liên quan để cô lập mã nguồn.
 
-### Bước 2.1: Chuẩn bị 2 thư mục nội bản
-Mở Terminal ở thư mục hiện tại hoặc thư mục cha và nhân bản codebase ra làm 2:
+### Bước 2.1: Tạo 2 nhánh nhánh làm việc
+Mở Terminal ở thư mục hiện tại và thực thể hóa 2 nhánh từ mã nguồn mới nhất:
 ```bash
-# Clone repo gốc làm bản chứa CLI
-git clone <URL_REPO_HIỆN_TẠI_CỦA_BẠN> kps-cli-repo
+# Tạo nhánh dành cho KPS CLI
+git branch kps-cli-repo
 
-# Clone thêm lần nữa làm bản chứa Web Docs
-git clone <URL_REPO_HIỆN_TẠI_CỦA_BẠN> kps-web-repo
+# Tạo thêm nhánh dành cho tài liệu Web
+git branch kps-web-repo
 ```
 
-### Bước 2.2: Dọn dẹp Repo CLI (`kps-cli-repo`)
-1. Di chuyển vào làm việc trong thư mục `kps-cli-repo`.
+### Bước 2.2: Dọn dẹp nhánh CLI (`kps-cli-repo`)
+1. Chuyển đổi công việc sang nhánh CLI:
+   ```bash
+   git checkout kps-cli-repo
+   ```
 2. **Xóa các module thuộc về Web**:
    - Chạy lệnh: `rm -rf apps/web`
    - Chạy lệnh: `rm -rf packages/backend`
-3. **Cập nhật khai báo ở gốc**:
+3. **Cập nhật và tối ưu khai báo ở root**:
    - Tìm trong `package.json` (root): Xóa các scripts chỉ dùng cho web như `dev:web`, `build:web`.
-   - Tìm trong `turbo.json`: Xóa các cấu hình dependency liên đới tới việc build Next.js / Convex.
+   - Tìm trong `turbo.json`: Xóa các định cấu hình pipeline build Next.js / Convex.
 4. **Cập nhật lại dependencies Workspace**:
-   - Bước này rất quan trọng để Turbo và Bun cập nhật lại `bun.lockb`.
-   - Chạy lệnh: `bun install`
-5. **Đẩy (Push) lên Repo tương ứng**:
+   - Chạy lệnh sau để Turbo và Bun làm mới lại sơ đồ cây `bun.lockb`.
+   - `bun install`
+5. **Commit an toàn với skip-hook (--no-verify)**:
    ```bash
    git add .
-   git commit -m "chore: split monorepo - remove web-related packages"
-   # Trỏ remote origin lên Github repo dành cho CLI
-   git remote set-url origin <URL_GITHUB_KPS_CLI_MỚI>
-   git push -u origin main
+   git commit --no-verify -m "chore: split monorepo - remove web-related packages"
    ```
 
-### Bước 2.3: Dọn dẹp Repo Web (`kps-web-repo`)
-1. Di chuyển vào làm việc trong thư mục `kps-web-repo`.
+*(Ghi chú: Giờ nhánh này đã đại diện cho CLI. Bạn có thể push nó làm nhánh `main` cho một Repo mới hoàn toàn bằng cách cài Add remote và git push)*.
+
+### Bước 2.3: Dọn dẹp nhánh Web (`kps-web-repo`)
+1. Chuyển đổi công tác sang nhánh web:
+   ```bash
+   git checkout kps-web-repo
+   ```
 2. **Xóa các module thuộc về hệ thống CLI**:
    - Chạy lệnh: `rm -rf apps/cli`
    - Chạy lệnh: `rm -rf packages/template-generator`
    - Chạy lệnh: `rm -rf packages/create-kps`
-   - *(Lưu ý: Nếu `packages/types` cũng được `apps/web` import để dùng cho Frontend, bạn hãy giữ lại nó. Nếu không liên quan, xóa luôn để codebase tinh gọn).*
-3. **Dọn dẹp thiết lập ở gốc**:
-   - Mở `package.json` và `turbo.json` ở cấp root, xoá bỏ các chuỗi lệnh build/dev của CLI (tương tự như `dev:cli`, `build:cli`, script generator v.v.).
+   - *(Lưu ý: Nếu `packages/types` cũng được `apps/web` import để dùng cho Frontend, bạn hãy giữ lại nó. Nếu không liên quan thì cứ xóa).*
+3. **Tối ưu thiết lập ở gốc**:
+   - Mở `package.json` và `turbo.json` ở cấp root, xoá bỏ các chuỗi script build/dev của CLI (tương tự như `dev:cli`, `build:cli`, template builds v.v.).
 4. **Viết lại Lockfile**:
-   - Chạy lệnh: `bun install`
-5. **Đẩy (Push) sang Repo Website**:
+   - `bun install`
+5. **Hoàn thiện bản nháp với skip-hook (--no-verify)**:
    ```bash
    git add .
-   git commit -m "chore: split monorepo - remove cli-related packages"
-   # Trỏ remote origin lên Github repo dành cho Web
-   git remote set-url origin <URL_GITHUB_KPS_WEB_MỚI>
-   git push -u origin main
+   git commit --no-verify -m "chore: split monorepo - remove cli-related packages"
    ```
+
+*(Ghi chú: Bạn có thể push nhánh này làm nhánh `main` cho Repos của trang tài liệu tương tự như với nhánh CLI).*
 
 ---
 
 ## 3. Xử lý Cấu hình và Shared Packages
-Nếu thư mục `packages/types` (hoặc các thiết lập dùng chung như eslint, oxlint) mà cả **CLI** và **Web** đều phụ thuộc vào, bạn có 2 hướng giải quyết chuẩn:
+Nếu thư mục `packages/types` (hoặc các thiết lập dùng chung như eslint, oxlint) mà cả **CLI** và **Web** đều phụ thuộc vào, bạn theo hướng giải quyết chuẩn:
 
-- **Cách 1 (Nhanh, dễ quản lý ngay):** Giữ bản sao chung ở cả 2 Repo (monorepo con). Vì CLI và Web là 2 nền tảng khác nhau, việc duy trì 2 package shared cũng không tạo ra quá nhiều lỗi phá vỡ đồng bộ trừ khi API giữa chúng bị lệch quá xa.
-- **Cách 2 (Tiêu chuẩn System Scaling):** Đóng gói thư viện dùng chung (`@kps/types` và các định dạng config) lên kho đăng ký **NPM Registry** hoặc **GitHub Packages**. Sau đó từ 2 Repo tự do, chỉ cần chạy `bun add @kps/types` như thư viện qua mạng thay vì dùng liên kết nội bộ `workspace:*`.
-
+- Giữ bản sao chung ở cả 2 Repo (monorepo con). Vì CLI và Web là 2 nền tảng khác nhau, việc duy trì 2 package shared cũng không tạo ra quá nhiều lỗi phá vỡ đồng bộ trừ khi API giữa chúng bị lệch quá xa.
+  
 ## 4. Nghiệm thu thao tác
 Tại cấu trúc mới của mỗi kho lưu trữ, hãy chạy test qua luồng vòng đời sản phẩm:
 - **Repo CLI:** Gọi `bun run build` thử, sau đó test code trực tiếp bằng cách đi vào thư mục module `cd apps/cli && bun run test`.
