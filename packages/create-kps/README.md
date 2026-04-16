@@ -1,23 +1,19 @@
-# create-bts
+# kps (Alias Package)
 
-This is an alias package for [`create-better-t-stack`](https://www.npmjs.com/package/create-better-t-stack).
+Đây là package hoạt động dưới dạng **Alias (Bí danh)** nhằm rút gọn câu lệnh thực thi cho bộ công cụ CLI chính (`create-kps`).
 
-## Usage
+## Vai trò
+- Giúp người dùng có thể khởi tạo dự án nhanh hơn với những cú pháp siêu ngắn thay vì phải gõ tên đầy đủ.
+- Thay vì gõ `npx create-kps`, người dùng chỉ cần gõ `npx kps`.
+
+## Tương tác với CLI (`apps/cli`)
+- Package này định tuyến trực tiếp các thao tác thi hành đến package nguyên bản (`create-kps` được build từ `apps/cli`). 
+- Trong `package.json`, nó có phụ thuộc (`dependencies`) trực tiếp vào thư viện `create-kps` và trỏ file thực thi (bin) về file gốc để kích hoạt giao diện CLI. Do đó, đây chỉ là "cánh cửa" lối tắt gọi thẳng vào logic của `apps/cli`.
+
+## Cách sử dụng (từ góc độ người dùng)
 
 ```bash
-npx create-bts@latest
+npx kps@latest
+# hoặc
+bun create kps
 ```
-
-or
-
-```bash
-bun create bts
-```
-
-For full documentation, please visit [better-t-stack.dev](https://better-t-stack.dev/).
-
-## About
-
-`create-bts` is a shorter alias for the full `create-better-t-stack` command. Both packages provide the same functionality - a modern CLI tool for scaffolding end-to-end type-safe TypeScript projects.
-
-All functionality is provided by the main [`create-better-t-stack`](https://www.npmjs.com/package/create-better-t-stack) package.
