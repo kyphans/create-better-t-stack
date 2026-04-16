@@ -1,6 +1,6 @@
 import { Result } from "better-result";
 
-import { writeBtsConfigToVfs } from "./bts-config";
+import { writeKpsConfigToVfs } from "./kps-config";
 import { VirtualFileSystem } from "./core/virtual-fs";
 import { processCatalogs, processPackageConfigs } from "./post-process";
 import {
@@ -90,7 +90,7 @@ export async function generate(
       // Write bts.jsonc config file
       if (options.version) {
         const reproducibleCommand = generateReproducibleCommand(config);
-        writeBtsConfigToVfs(vfs, config, options.version, reproducibleCommand);
+        writeKpsConfigToVfs(vfs, config, options.version, reproducibleCommand);
       }
 
       const tree: VirtualFileTree = {
