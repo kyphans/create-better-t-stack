@@ -146,6 +146,8 @@ export const router = t.router({
           auth: AuthSchema.optional(),
           payments: PaymentsSchema.optional(),
           frontend: z.array(FrontendSchema).optional(),
+          frontendName: z.string().optional(),
+          backendName: z.string().optional(),
           addons: z.array(AddonsSchema).optional(),
           examples: z.array(ExamplesSchema).optional(),
           git: z.boolean().optional(),
@@ -375,18 +377,12 @@ export {
 } from "@kps/template-generator";
 
 // Import for createVirtual
+import { generate, GeneratorError, type VirtualFileTree } from "@kps/template-generator";
 import {
-  generate,
-  GeneratorError,
-  type VirtualFileTree,
-} from "@kps/template-generator";
-
-import {
-  EMBEDDED_TEMPLATES as _EMBEDDED_TEMPLATES,
+  EMBEDDED_TEMPLATES,
   writeKpsConfigToVfs,
   generateReproducibleCommand,
 } from "@kps/template-generator";
-
 import { VirtualFileSystem } from "@kps/template-generator";
 
 /**
@@ -436,6 +432,8 @@ export async function createVirtual(
     api: options.api || "trpc",
     webDeploy: options.webDeploy || "none",
     serverDeploy: options.serverDeploy || "none",
+    frontendName: options.frontendName || "web",
+    backendName: options.backendName || "server",
   };
 
   const providedFlags = new Set([

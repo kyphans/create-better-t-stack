@@ -31,7 +31,7 @@ export async function processDeployTemplates(
           vfs,
           templates,
           `deploy/${config.webDeploy}/web/${templateMap[f]}`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
       }
@@ -43,7 +43,7 @@ export async function processDeployTemplates(
       vfs,
       templates,
       `deploy/${config.serverDeploy}/server`,
-      "apps/server",
+      `apps/${config.backendName}`,
       config,
     );
   }

@@ -9,7 +9,7 @@ export function processDatabaseDeps(vfs: VirtualFileSystem, config: ProjectConfi
   if (backend === "convex" || database === "none") return;
 
   const dbPkgPath = "packages/db/package.json";
-  const webPkgPath = "apps/web/package.json";
+  const webPkgPath = `apps/${config.frontendName}/package.json`;
 
   if (!vfs.exists(dbPkgPath)) return;
   const webExists = vfs.exists(webPkgPath);

@@ -290,9 +290,7 @@ async function main(): Promise<void> {
     console.log(`📦 NPM: https://www.npmjs.com/package/${packageName}/v/${canaryVersion}`);
     console.log(`📦 NPM: https://www.npmjs.com/package/create-kps-alias/v/${canaryVersion}`);
     console.log(`📦 NPM: https://www.npmjs.com/package/@kps/types/v/${canaryVersion}`);
-    console.log(
-      `📦 NPM: https://www.npmjs.com/package/@kps/template-generator/v/${canaryVersion}`,
-    );
+    console.log(`📦 NPM: https://www.npmjs.com/package/@kps/template-generator/v/${canaryVersion}`);
   } finally {
     if (!restored) {
       await writeFile(CLI_PACKAGE_JSON_PATH, originalPackageJsonString);

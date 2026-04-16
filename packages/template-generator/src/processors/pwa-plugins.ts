@@ -8,7 +8,7 @@ export function processPwaPlugins(vfs: VirtualFileSystem, config: ProjectConfig)
 
   if (!addons.includes("pwa")) return;
 
-  const viteConfigPath = "apps/web/vite.config.ts";
+  const viteConfigPath = `apps/${config.frontendName}/vite.config.ts`;
   if (!vfs.exists(viteConfigPath)) return;
 
   const content = vfs.readFile(viteConfigPath);

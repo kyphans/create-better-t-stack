@@ -21,7 +21,7 @@ export function processDeployDeps(vfs: VirtualFileSystem, config: ProjectConfig)
   }
 
   if (isCloudflareServer && !isBackendSelf) {
-    const serverPkgPath = "apps/server/package.json";
+    const serverPkgPath = `apps/${config.backendName}/package.json`;
     if (vfs.exists(serverPkgPath)) {
       addPackageDependency({
         vfs,
@@ -32,7 +32,7 @@ export function processDeployDeps(vfs: VirtualFileSystem, config: ProjectConfig)
   }
 
   if (isCloudflareWeb) {
-    const webPkgPath = "apps/web/package.json";
+    const webPkgPath = `apps/${config.frontendName}/package.json`;
     if (!vfs.exists(webPkgPath)) return;
 
     if (frontend.includes("next")) {

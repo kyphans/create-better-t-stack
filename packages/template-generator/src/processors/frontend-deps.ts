@@ -8,7 +8,7 @@ export function processFrontendDeps(vfs: VirtualFileSystem, config: ProjectConfi
 
   if (!frontend.includes("astro") || webDeploy === "cloudflare") return;
 
-  const webPackagePath = "apps/web/package.json";
+  const webPackagePath = `apps/${config.frontendName}/package.json`;
   if (!vfs.exists(webPackagePath)) return;
 
   addPackageDependency({

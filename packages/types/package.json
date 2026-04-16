@@ -4,8 +4,8 @@
   "description": "TypeScript types and schemas for create-kps CLI",
   "keywords": [
     "kps",
-    "types",
     "schema",
+    "types",
     "typescript"
   ],
   "homepage": "https://kps.pqky.dev/",

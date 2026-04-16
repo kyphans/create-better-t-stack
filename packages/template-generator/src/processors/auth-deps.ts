@@ -18,7 +18,7 @@ export function processAuthDeps(vfs: VirtualFileSystem, config: ProjectConfig): 
 
 function processConvexAuthDeps(vfs: VirtualFileSystem, config: ProjectConfig): void {
   const { auth, frontend } = config;
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
   const nativePath = "apps/native/package.json";
   const backendPath = "packages/backend/package.json";
 
@@ -127,9 +127,9 @@ function processStandardAuthDeps(vfs: VirtualFileSystem, config: ProjectConfig):
   const { auth, backend, frontend } = config;
   const authPath = "packages/auth/package.json";
   const apiPath = "packages/api/package.json";
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
   const nativePath = "apps/native/package.json";
-  const serverPath = "apps/server/package.json";
+  const serverPath = `apps/${config.backendName}/package.json`;
 
   const authExists = vfs.exists(authPath);
   const apiExists = vfs.exists(apiPath);

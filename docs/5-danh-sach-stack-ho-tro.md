@@ -3,7 +3,9 @@
 Tính đến phiên bản hiện tại, CLI `create-kps` hỗ trợ một hệ sinh thái rộng lớn, tuỳ biến theo từng phần tử của kiến trúc:
 
 ## 1. Frontend Frameworks
+
 (Tuỳ chọn cờ: `--frontend`)
+
 - **tanstack-router**: React + TanStack Router
 - **react-router**: React Router
 - **tanstack-start**: TanStack Start (Fullstack Framework)
@@ -18,7 +20,9 @@ Tính đến phiên bản hiện tại, CLI `create-kps` hỗ trợ một hệ s
 - **none**: Bỏ qua tạo frontend
 
 ## 2. Backend Frameworks
+
 (Tuỳ chọn cờ: `--backend`)
+
 - **hono**: Hono (Tối ưu cho Edge và Bun)
 - **express**: Express.js truyền thống
 - **fastify**: Fastify
@@ -28,7 +32,9 @@ Tính đến phiên bản hiện tại, CLI `create-kps` hỗ trợ một hệ s
 - **none**: Bỏ qua tạo backend
 
 ## 3. Database & ORMs
+
 (Tuỳ chọn cờ: `--database`, `--orm`)
+
 - **Database**:
   - `sqlite`
   - `postgres`
@@ -42,24 +48,30 @@ Tính đến phiên bản hiện tại, CLI `create-kps` hỗ trợ một hệ s
   - `none`
 
 ## 4. API Layer
+
 (Tuỳ chọn cờ: `--api`)
+
 - **trpc**: tRPC (End-to-End typesafe API via RPC)
 - **orpc**: oRPC
 - **none**: Không sử dụng các tầng API đặc thù
 
 ## 5. Runtimes
+
 (Tuỳ chọn cờ: `--runtime`)
+
 - **bun**: Nền tảng thực thi cực nhanh (Khuyến nghị)
 - **node**: Node.js tiêu chuẩn
 - **workers**: Cloudflare Workers
 - **none**: Không chỉ định
 
 ## 6. Nền tảng cung cấp & Dịch vụ (Providers)
+
 (Tuỳ chọn cờ: `--auth`, `--payments`, `--db-setup`)
+
 - **Authentication**:
   - `better-auth`: Thư viện Better Auth mã nguồn mở
   - `clerk`: Clerk (Giải pháp Managed Auth)
-- **Payments**: 
+- **Payments**:
   - `polar` (Polar.sh)
 - **Database Deployment / Provisioning**: Dễ dàng tạo Cloud DB / Docker ngay từ CLI.
   - `turso`
@@ -72,12 +84,16 @@ Tính đến phiên bản hiện tại, CLI `create-kps` hỗ trợ một hệ s
   - `docker` (Dựng database container cục bộ qua docker-compose)
 
 ## 7. Web & Server Deployment
+
 (Tuỳ chọn cờ: `--web-deploy`, `--server-deploy`)
+
 - **cloudflare**: Hỗ trợ xuất và tự động cấu hình deploy lên Cloudflare.
 - **none**
 
 ## 8. Utilities & Extensions (Addons)
+
 (Tuỳ chọn cờ: `-a, --addons`)
+
 - Giải pháp đa nền tảng: `pwa`, `tauri` (Desktop apps), `wxt` (Browser Extensions), `electrobun`.
 - Document Websites: `starlight` (cho Astro), `fumadocs` (Next.js docs).
 - Code Quality & Git Hooks: `biome` (Linter & Formatter xịn, cực tốc độ), `oxlint`, `lefthook` (Quản lý Hooks bằng Rust thay thế husky), `husky`, `ultracite`.

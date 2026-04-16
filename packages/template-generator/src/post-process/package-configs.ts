@@ -431,7 +431,7 @@ function renameDevScriptsForAlchemy(vfs: VirtualFileSystem, config: ProjectConfi
 
   // Rename server dev script to dev:bare when serverDeploy is cloudflare
   if (serverDeploy === "cloudflare" && backend !== "self") {
-    const serverPkgPath = "apps/server/package.json";
+    const serverPkgPath = `apps/${config.backendName}/package.json`;
     const serverPkg = vfs.readJson<PackageJson>(serverPkgPath);
     if (serverPkg?.scripts?.dev) {
       serverPkg.scripts["dev:bare"] = serverPkg.scripts.dev;
@@ -442,7 +442,7 @@ function renameDevScriptsForAlchemy(vfs: VirtualFileSystem, config: ProjectConfi
 
   // Rename web dev script to dev:bare when webDeploy is cloudflare
   if (webDeploy === "cloudflare") {
-    const webPkgPath = "apps/web/package.json";
+    const webPkgPath = `apps/${config.frontendName}/package.json`;
     const webPkg = vfs.readJson<PackageJson>(webPkgPath);
     if (webPkg?.scripts?.dev) {
       webPkg.scripts["dev:bare"] = webPkg.scripts.dev;

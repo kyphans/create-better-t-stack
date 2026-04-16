@@ -6,10 +6,7 @@ import { desktopWebFrontends } from "@kps/types";
 import { getUserPkgManager } from "./utils/get-package-manager";
 
 // Re-export from template-generator (single source of truth)
-export {
-  dependencyVersionMap,
-  type AvailableDependencies,
-} from "@kps/template-generator";
+export { dependencyVersionMap, type AvailableDependencies } from "@kps/template-generator";
 
 const __filename = fileURLToPath(import.meta.url);
 const distPath = path.dirname(__filename);
@@ -18,6 +15,8 @@ export const PKG_ROOT = path.join(distPath, "../");
 export const DEFAULT_CONFIG_BASE = {
   projectName: "my-kps-app",
   relativePath: "my-kps-app",
+  frontendName: "web",
+  backendName: "server",
   frontend: ["tanstack-router"],
   database: "sqlite",
   orm: "drizzle",

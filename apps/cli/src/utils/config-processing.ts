@@ -98,6 +98,14 @@ export function processFlags(options: CLIInput, projectName?: string) {
     config.serverDeploy = options.serverDeploy as ServerDeploy;
   }
 
+  if (options.frontendName) {
+    config.frontendName = options.frontendName;
+  }
+
+  if (options.backendName) {
+    config.backendName = options.backendName;
+  }
+
   const derivedName = deriveProjectName(projectName, options.projectDirectory);
   if (derivedName) {
     config.projectName = projectName || derivedName;

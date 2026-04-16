@@ -20,6 +20,7 @@ import { isSilent } from "../utils/context";
 import { UserCancelledError } from "../utils/errors";
 import { getAddonsChoice } from "./addons";
 import { getApiChoice } from "./api";
+import { getBackendNameChoice, getFrontendNameChoice } from "./app-names";
 import { getAuthChoice } from "./auth";
 import { getBackendFrameworkChoice } from "./backend";
 import { getDatabaseChoice } from "./database";
@@ -53,6 +54,8 @@ type PromptGroupResults = {
   install: boolean;
   webDeploy: WebDeploy;
   serverDeploy: ServerDeploy;
+  frontendName: string;
+  backendName: string;
 };
 
 export async function gatherConfig(
@@ -84,13 +87,19 @@ export async function gatherConfig(
       api: flags.api ?? DEFAULT_CONFIG.api,
       webDeploy: flags.webDeploy ?? DEFAULT_CONFIG.webDeploy,
       serverDeploy: flags.serverDeploy ?? DEFAULT_CONFIG.serverDeploy,
+      frontendName: flags.frontendName ?? DEFAULT_CONFIG.frontendName,
+      backendName: flags.backendName ?? DEFAULT_CONFIG.backendName,
     };
   }
 
   const result = await navigableGroup<PromptGroupResults>(
     {
       frontend: () => getFrontendChoice(flags.frontend, flags.backend, flags.auth),
+      frontendName: ({ results }) =>
+        getFrontendNameChoice(flags.frontendName, (results.frontend?.length ?? 0) > 0),
       backend: ({ results }) => getBackendFrameworkChoice(flags.backend, results.frontend),
+      backendName: ({ results }) =>
+        getBackendNameChoice(flags.backendName, (results.backend ?? "none") !== "none"),
       runtime: ({ results }) => getRuntimeChoice(flags.runtime, results.backend),
       database: ({ results }) =>
         getDatabaseChoice(flags.database, results.backend, results.runtime),
@@ -172,5 +181,7 @@ export async function gatherConfig(
     api: result.api,
     webDeploy: result.webDeploy,
     serverDeploy: result.serverDeploy,
+    frontendName: result.frontendName,
+    backendName: result.backendName,
   };
 }

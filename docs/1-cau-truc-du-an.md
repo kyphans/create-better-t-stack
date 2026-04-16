@@ -29,6 +29,7 @@ Dự án `create-kps` được xây dựng theo kiến trúc **Monorepo**, tận
   - **Nhiệm vụ**: Thường giao tiếp với Convex hoặc database riêng phục vụ các logic động của site tài liệu.
 
 ## Tổng kết sơ đồ cây
+
 ```
 kps/
 ├── apps/

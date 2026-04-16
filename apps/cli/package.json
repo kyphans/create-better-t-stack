@@ -3,7 +3,6 @@
   "version": "3.27.0",
   "description": "A feature-rich, enterprise-ready TypeScript fullstack starter kit with modern stack options.",
   "keywords": [
-    "kps",
     "biome",
     "boilerplate",
     "cli",
@@ -12,11 +11,13 @@
     "expo",
     "fullstack",
     "hono",
+    "kps",
     "monorepo",
     "prisma",
     "pwa",
     "react",
     "react-native",
+    "scaffold",
     "shadcn",
     "starter",
     "tailwind",
@@ -24,15 +25,14 @@
     "tauri",
     "trpc",
     "turborepo",
-    "type-safety",
-    "scaffold"
+    "type-safety"
   ],
   "homepage": "https://kps.pqky.dev/",
   "license": "MIT",
   "author": "Ky Phan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AmanVarshney01/create-better-t-stack.git",
+    "url": "git+ https://github.com/kyphans/kps.git",
     "directory": "apps/cli"
   },
   "bin": {
@@ -69,10 +69,10 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@kps/template-generator": "workspace:*",
-    "@kps/types": "workspace:*",
     "@clack/core": "^1.1.0",
     "@clack/prompts": "^1.1.0",
+    "@kps/template-generator": "workspace:*",
+    "@kps/types": "workspace:*",
     "@modelcontextprotocol/sdk": "1.27.1",
     "@trpc/server": "^11.13.4",
     "better-result": "^2.7.0",

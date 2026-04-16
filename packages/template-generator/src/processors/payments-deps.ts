@@ -8,7 +8,7 @@ export function processPaymentsDeps(vfs: VirtualFileSystem, config: ProjectConfi
   if (!payments || payments === "none") return;
 
   const authPath = "packages/auth/package.json";
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
 
   if (payments === "polar") {
     if (vfs.exists(authPath)) {

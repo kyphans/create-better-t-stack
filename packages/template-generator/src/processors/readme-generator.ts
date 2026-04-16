@@ -87,7 +87,8 @@ function getClerkSetupLines(
     ];
   }
 
-  const serverEnvPath = backend === "self" ? "apps/web/.env" : "apps/server/.env";
+  const serverEnvPath =
+    backend === "self" ? `apps/${config.frontendName}/.env` : `apps/${config.backendName}/.env`;
   const needsServerSideClerkAuth = backend !== "none";
   const needsClerkBackendPublishableKey = ["express", "fastify"].includes(backend);
   const needsClerkRequestVerification =
@@ -567,7 +568,9 @@ function generateDatabaseSetup(config: ProjectConfig, packageManagerRunCmd: stri
   if (database === "none") return "";
 
   const isBackendSelf = backend === "self";
-  const envPath = isBackendSelf ? "apps/web/.env" : "apps/server/.env";
+  const envPath = isBackendSelf
+    ? `apps/${config.frontendName}/.env`
+    : `apps/${config.backendName}/.env`;
   const ormLabels: Record<ProjectConfig["orm"], string> = {
     drizzle: "Drizzle ORM",
     prisma: "Prisma",
@@ -591,7 +594,7 @@ ${packageManagerRunCmd} db:local
 \`\`\``
 }
 
-2. Update your \`.env\` file in the \`${isBackendSelf ? "apps/web" : "apps/server"}\` directory with the appropriate connection details if needed.`,
+2. Update your \`.env\` file in the \`${isBackendSelf ? `apps/${config.frontendName}` : `apps/${config.backendName}`}\` directory with the appropriate connection details if needed.`,
 
     postgres: `This project uses PostgreSQL${ormDesc}.
 

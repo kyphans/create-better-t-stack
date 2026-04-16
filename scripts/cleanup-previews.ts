@@ -1,11 +1,7 @@
 import { confirm, isCancel, multiselect, spinner } from "@clack/prompts";
 import { $ } from "bun";
 
-const PACKAGES = [
-  "create-kps",
-  "@kps/types",
-  "@kps/template-generator",
-] as const;
+const PACKAGES = ["create-kps", "@kps/types", "@kps/template-generator"] as const;
 
 interface DistTags {
   [tag: string]: string;

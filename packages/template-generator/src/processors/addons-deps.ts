@@ -29,7 +29,7 @@ export function processAddonsDeps(vfs: VirtualFileSystem, config: ProjectConfig)
   }
 
   if (config.addons.includes("pwa") && hasPwaCompatibleFrontend) {
-    const webPkgPath = "apps/web/package.json";
+    const webPkgPath = `apps/${config.frontendName}/package.json`;
     if (vfs.exists(webPkgPath)) {
       addPackageDependency({
         vfs,
@@ -46,7 +46,7 @@ export function processAddonsDeps(vfs: VirtualFileSystem, config: ProjectConfig)
   }
 
   if (config.addons.includes("tauri")) {
-    const webPkgPath = "apps/web/package.json";
+    const webPkgPath = `apps/${config.frontendName}/package.json`;
     if (vfs.exists(webPkgPath)) {
       addPackageDependency({ vfs, packagePath: webPkgPath, devDependencies: ["@tauri-apps/cli"] });
       const webPkg = vfs.readJson<PackageJson>(webPkgPath);

@@ -3,8 +3,8 @@
   "version": "3.27.0",
   "description": "Virtual file system generator for KPS templates through a unified generator interface.",
   "keywords": [
-    "kps",
     "generator",
+    "kps",
     "templates"
   ],
   "homepage": "https://kps.pqky.dev/",

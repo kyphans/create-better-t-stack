@@ -18,14 +18,16 @@ Hệ thống Scaffold của `kps` hoạt động dựa trên Engine biên dịch
 ## 2. Cách Tích hợp (Tích hợp Addons ngay cả khi project đã được tạo)
 
 Dự án cung cấp Module xử lý `add` command (`apps/cli/src/helpers/core/add-handler.ts`), cho phép một thành phần (Addons) được cài cắm vào project bất cứ lúc nào.
+
 - Cách sử dụng CLI: Chạy `bun create-kps add <tên-addon>`
-- Cách phát triển tính năng này: 
+- Cách phát triển tính năng này:
   - Khai báo logic thay đổi các tệp cấu trúc gốc hoặc chép đè config bổ sung cho project (như setup `Husky` thay đổi package.json, thêm `.husky`).
   - Viết Unit logic cho addons handler nằm ở `apps/cli/src/helpers/`.
 
 ## 3. Cách Xoá (Loại bỏ một thành phần)
 
 Loại bỏ ở góc độ người làm phát triển nhân gốc dự án (Maintainer):
+
 1. **Loại bỏ khỏi cấu trúc dữ liệu**:
    - Xoá định nghĩa tên thành phần ở Zod enum (`packages/types`).
 2. **Xóa Prompts**:

@@ -24,7 +24,7 @@ This repository is organized as a monorepo containing:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/AmanVarshney01/create-better-t-stack.git
+   git clone  https://github.com/kyphans/kps.git
    cd create-better-t-stack
    ```
 

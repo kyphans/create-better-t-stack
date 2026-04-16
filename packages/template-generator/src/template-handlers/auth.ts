@@ -42,7 +42,7 @@ export async function processAuthTemplates(
           vfs,
           templates,
           `auth/clerk/convex/web/react/${reactFramework}`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
       }
@@ -89,7 +89,7 @@ export async function processAuthTemplates(
         vfs,
         templates,
         "auth/better-auth/convex/web/react/base",
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
 
@@ -101,7 +101,7 @@ export async function processAuthTemplates(
           vfs,
           templates,
           `auth/better-auth/convex/web/react/${reactFramework}`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
       }
@@ -159,7 +159,7 @@ export async function processAuthTemplates(
       vfs,
       templates,
       `auth/${authProvider}/web/react/base`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
 
@@ -171,7 +171,7 @@ export async function processAuthTemplates(
         vfs,
         templates,
         `auth/${authProvider}/web/react/${reactFramework}`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
 
@@ -183,7 +183,7 @@ export async function processAuthTemplates(
           vfs,
           templates,
           `auth/${authProvider}/fullstack/${reactFramework}`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
       }
@@ -194,17 +194,23 @@ export async function processAuthTemplates(
         vfs,
         templates,
         `auth/${authProvider}/fullstack/nuxt`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     }
-    processTemplatesFromPrefix(vfs, templates, `auth/${authProvider}/web/nuxt`, "apps/web", config);
+    processTemplatesFromPrefix(
+      vfs,
+      templates,
+      `auth/${authProvider}/web/nuxt`,
+      `apps/${config.frontendName}`,
+      config,
+    );
   } else if (hasSvelteWeb) {
     processTemplatesFromPrefix(
       vfs,
       templates,
       `auth/${authProvider}/web/svelte`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
   } else if (hasSolidWeb) {
@@ -212,7 +218,7 @@ export async function processAuthTemplates(
       vfs,
       templates,
       `auth/${authProvider}/web/solid`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
   } else if (hasAstroWeb) {
@@ -221,7 +227,7 @@ export async function processAuthTemplates(
         vfs,
         templates,
         `auth/${authProvider}/fullstack/astro`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     }
@@ -229,7 +235,7 @@ export async function processAuthTemplates(
       vfs,
       templates,
       `auth/${authProvider}/web/astro`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
   }

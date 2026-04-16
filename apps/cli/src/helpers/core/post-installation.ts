@@ -241,10 +241,8 @@ export async function displayPostInstallInstructions(
     output += `\n${specialSponsorsSection.trim()}\n`;
   }
 
-  output += `\n${pc.bold(
-    "Like KPS?",
-  )} Please consider giving us a star\n   on GitHub:\n`;
-  output += pc.cyan("https://github.com/AmanVarshney01/create-better-t-stack");
+  output += `\n${pc.bold("Like KPS?")} Please consider giving us a star\n   on GitHub:\n`;
+  output += pc.cyan(" https://github.com/kyphans/kps");
 
   cliConsola.box(output);
 }

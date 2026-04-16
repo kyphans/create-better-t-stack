@@ -37,7 +37,7 @@ export async function processPaymentsTemplates(
         vfs,
         templates,
         `payments/${config.payments}/web/react/${reactFramework}`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     }
@@ -46,7 +46,7 @@ export async function processPaymentsTemplates(
       vfs,
       templates,
       `payments/${config.payments}/web/nuxt`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
   } else if (hasSvelteWeb) {
@@ -54,7 +54,7 @@ export async function processPaymentsTemplates(
       vfs,
       templates,
       `payments/${config.payments}/web/svelte`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
   } else if (hasSolidWeb) {
@@ -62,7 +62,7 @@ export async function processPaymentsTemplates(
       vfs,
       templates,
       `payments/${config.payments}/web/solid`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
   }

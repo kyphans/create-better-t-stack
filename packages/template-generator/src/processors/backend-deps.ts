@@ -14,7 +14,7 @@ export function processBackendDeps(vfs: VirtualFileSystem, config: ProjectConfig
     return;
   }
 
-  const serverPath = "apps/server/package.json";
+  const serverPath = `apps/${config.backendName}/package.json`;
   if (!vfs.exists(serverPath) || backend === "self" || backend === "none") return;
 
   const deps: AvailableDependencies[] = [];

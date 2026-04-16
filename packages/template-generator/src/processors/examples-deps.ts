@@ -38,9 +38,9 @@ function setupTodoDependencies(vfs: VirtualFileSystem, config: ProjectConfig): v
 function setupAIDependencies(vfs: VirtualFileSystem, config: ProjectConfig): void {
   const { frontend, backend } = config;
 
-  const webPkgPath = "apps/web/package.json";
+  const webPkgPath = `apps/${config.frontendName}/package.json`;
   const nativePkgPath = "apps/native/package.json";
-  const serverPkgPath = "apps/server/package.json";
+  const serverPkgPath = `apps/${config.backendName}/package.json`;
   const convexBackendPkgPath = "packages/backend/package.json";
 
   const webExists = vfs.exists(webPkgPath);

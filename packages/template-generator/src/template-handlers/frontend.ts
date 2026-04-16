@@ -22,7 +22,13 @@ export async function processFrontendTemplates(
 
   if (hasReactWeb || hasNuxtWeb || hasSvelteWeb || hasSolidWeb || hasAstroWeb) {
     if (hasReactWeb) {
-      processTemplatesFromPrefix(vfs, templates, "frontend/react/web-base", "apps/web", config);
+      processTemplatesFromPrefix(
+        vfs,
+        templates,
+        "frontend/react/web-base",
+        `apps/${config.frontendName}`,
+        config,
+      );
 
       const reactFramework = config.frontend.find((f) =>
         ["tanstack-router", "react-router", "tanstack-start", "next"].includes(f),
@@ -32,18 +38,42 @@ export async function processFrontendTemplates(
           vfs,
           templates,
           `frontend/react/${reactFramework}`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
       }
     } else if (hasNuxtWeb) {
-      processTemplatesFromPrefix(vfs, templates, "frontend/nuxt", "apps/web", config);
+      processTemplatesFromPrefix(
+        vfs,
+        templates,
+        "frontend/nuxt",
+        `apps/${config.frontendName}`,
+        config,
+      );
     } else if (hasSvelteWeb) {
-      processTemplatesFromPrefix(vfs, templates, "frontend/svelte", "apps/web", config);
+      processTemplatesFromPrefix(
+        vfs,
+        templates,
+        "frontend/svelte",
+        `apps/${config.frontendName}`,
+        config,
+      );
     } else if (hasSolidWeb) {
-      processTemplatesFromPrefix(vfs, templates, "frontend/solid", "apps/web", config);
+      processTemplatesFromPrefix(
+        vfs,
+        templates,
+        "frontend/solid",
+        `apps/${config.frontendName}`,
+        config,
+      );
     } else if (hasAstroWeb) {
-      processTemplatesFromPrefix(vfs, templates, "frontend/astro", "apps/web", config);
+      processTemplatesFromPrefix(
+        vfs,
+        templates,
+        "frontend/astro",
+        `apps/${config.frontendName}`,
+        config,
+      );
     }
   }
 

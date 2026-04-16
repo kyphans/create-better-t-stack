@@ -1,7 +1,7 @@
 import { Result } from "better-result";
 
-import { writeKpsConfigToVfs } from "./kps-config";
 import { VirtualFileSystem } from "./core/virtual-fs";
+import { writeKpsConfigToVfs } from "./kps-config";
 import { processCatalogs, processPackageConfigs } from "./post-process";
 import {
   processDependencies,

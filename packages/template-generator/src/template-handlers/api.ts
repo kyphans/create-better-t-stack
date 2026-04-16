@@ -26,7 +26,7 @@ export async function processApiTemplates(
       vfs,
       templates,
       `api/${config.api}/web/react/base`,
-      "apps/web",
+      `apps/${config.frontendName}`,
       config,
     );
 
@@ -41,7 +41,7 @@ export async function processApiTemplates(
         vfs,
         templates,
         `api/${config.api}/fullstack/${reactFramework}`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     }
@@ -51,7 +51,7 @@ export async function processApiTemplates(
         vfs,
         templates,
         `api/${config.api}/fullstack/nuxt`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
       // Only include vue-query from web templates, skip generic orpc.ts
@@ -59,26 +59,50 @@ export async function processApiTemplates(
         vfs,
         templates,
         `api/${config.api}/web/nuxt/app/plugins/vue-query.ts`,
-        "apps/web/app/plugins/vue-query.ts",
+        `apps/${config.frontendName}/app/plugins/vue-query.ts`,
         config,
       );
     } else {
-      processTemplatesFromPrefix(vfs, templates, `api/${config.api}/web/nuxt`, "apps/web", config);
+      processTemplatesFromPrefix(
+        vfs,
+        templates,
+        `api/${config.api}/web/nuxt`,
+        `apps/${config.frontendName}`,
+        config,
+      );
     }
   } else if (hasSvelteWeb && config.api === "orpc") {
-    processTemplatesFromPrefix(vfs, templates, `api/${config.api}/web/svelte`, "apps/web", config);
+    processTemplatesFromPrefix(
+      vfs,
+      templates,
+      `api/${config.api}/web/svelte`,
+      `apps/${config.frontendName}`,
+      config,
+    );
   } else if (hasSolidWeb && config.api === "orpc") {
-    processTemplatesFromPrefix(vfs, templates, `api/${config.api}/web/solid`, "apps/web", config);
+    processTemplatesFromPrefix(
+      vfs,
+      templates,
+      `api/${config.api}/web/solid`,
+      `apps/${config.frontendName}`,
+      config,
+    );
   } else if (hasAstroWeb && config.api === "orpc") {
     // Always include the orpc client (handles both self and external backend)
-    processTemplatesFromPrefix(vfs, templates, `api/${config.api}/web/astro`, "apps/web", config);
+    processTemplatesFromPrefix(
+      vfs,
+      templates,
+      `api/${config.api}/web/astro`,
+      `apps/${config.frontendName}`,
+      config,
+    );
     // Add fullstack API routes when backend=self
     if (config.backend === "self") {
       processTemplatesFromPrefix(
         vfs,
         templates,
         `api/${config.api}/fullstack/astro`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     }

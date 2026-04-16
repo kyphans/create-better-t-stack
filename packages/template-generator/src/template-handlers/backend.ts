@@ -23,12 +23,18 @@ export async function processBackendTemplates(
 
   if (config.backend === "self") return;
 
-  processTemplatesFromPrefix(vfs, templates, "backend/server/base", "apps/server", config);
+  processTemplatesFromPrefix(
+    vfs,
+    templates,
+    "backend/server/base",
+    `apps/${config.backendName}`,
+    config,
+  );
   processTemplatesFromPrefix(
     vfs,
     templates,
     `backend/server/${config.backend}`,
-    "apps/server",
+    `apps/${config.backendName}`,
     config,
   );
 }

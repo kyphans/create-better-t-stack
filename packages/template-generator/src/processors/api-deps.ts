@@ -97,7 +97,7 @@ function addApiPackageDeps(
 }
 
 function addServerDeps(vfs: VirtualFileSystem, api: API, backend: Backend): void {
-  const serverPath = "apps/server/package.json";
+  const serverPath = `apps/${config.backendName}/package.json`;
   if (!vfs.exists(serverPath)) return;
 
   if (backend === "convex") return;
@@ -125,7 +125,7 @@ function addSelfBackendWebDeps(
 ): void {
   if (backend !== "self") return;
 
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
   if (!vfs.exists(webPath)) return;
 
   // When backend is "self", add server deps to web too
@@ -150,7 +150,7 @@ function addWebClientDeps(
   backend: Backend,
   frontendType: FrontendType,
 ): void {
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
   if (!vfs.exists(webPath) || backend === "convex") return;
 
   if (api === "trpc" && frontendType.hasReactWeb) {
@@ -228,7 +228,7 @@ function addNativeDeps(vfs: VirtualFileSystem, api: API, backend: Backend): void
 }
 
 function addQueryDeps(vfs: VirtualFileSystem, frontend: Frontend[], backend: Backend): void {
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
   const nativePath = "apps/native/package.json";
   const frontendType = getFrontendType(frontend);
 
@@ -264,7 +264,7 @@ function addConvexDeps(
   frontend: Frontend[],
   frontendType: FrontendType,
 ): void {
-  const webPath = "apps/web/package.json";
+  const webPath = `apps/${config.frontendName}/package.json`;
   const nativePath = "apps/native/package.json";
   const webExists = vfs.exists(webPath);
   const nativeExists = vfs.exists(nativePath);

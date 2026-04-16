@@ -31,10 +31,7 @@ export async function readKpsConfig(projectDir: string): Promise<KpsConfig | nul
 export async function updateKpsConfig(
   projectDir: string,
   updates: Partial<
-    Pick<
-      KpsConfig,
-      "addons" | "addonOptions" | "dbSetupOptions" | "webDeploy" | "serverDeploy"
-    >
+    Pick<KpsConfig, "addons" | "addonOptions" | "dbSetupOptions" | "webDeploy" | "serverDeploy">
   >,
 ): Promise<void> {
   try {

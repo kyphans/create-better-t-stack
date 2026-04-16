@@ -62,7 +62,7 @@ export async function processExampleTemplates(
           vfs,
           templates,
           `examples/${example}/web/react/${reactFramework}`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
 
@@ -74,7 +74,7 @@ export async function processExampleTemplates(
             vfs,
             templates,
             `examples/${example}/fullstack/${reactFramework}`,
-            "apps/web",
+            `apps/${config.frontendName}`,
             config,
           );
         }
@@ -85,7 +85,7 @@ export async function processExampleTemplates(
           vfs,
           templates,
           `examples/${example}/fullstack/nuxt`,
-          "apps/web",
+          `apps/${config.frontendName}`,
           config,
         );
       }
@@ -93,7 +93,7 @@ export async function processExampleTemplates(
         vfs,
         templates,
         `examples/${example}/web/nuxt`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     } else if (hasSvelteWeb) {
@@ -101,7 +101,7 @@ export async function processExampleTemplates(
         vfs,
         templates,
         `examples/${example}/web/svelte`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     } else if (hasSolidWeb) {
@@ -109,7 +109,7 @@ export async function processExampleTemplates(
         vfs,
         templates,
         `examples/${example}/web/solid`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     } else if (hasAstroWeb) {
@@ -117,7 +117,7 @@ export async function processExampleTemplates(
         vfs,
         templates,
         `examples/${example}/web/astro`,
-        "apps/web",
+        `apps/${config.frontendName}`,
         config,
       );
     }

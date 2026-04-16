@@ -1,7 +1,7 @@
 import path from "node:path";
 
-import { generateReproducibleCommand } from "@kps/template-generator";
 import { intro, log, outro } from "@clack/prompts";
+import { generateReproducibleCommand } from "@kps/template-generator";
 import { Result, UnhandledException } from "better-result";
 import fs from "fs-extra";
 import pc from "picocolors";

@@ -26,8 +26,8 @@ export function processWorkspaceDeps(vfs: VirtualFileSystem, config: ProjectConf
     api: vfs.exists("packages/api/package.json"),
     ui: vfs.exists("packages/ui/package.json"),
     backend: vfs.exists("packages/backend/package.json"),
-    server: vfs.exists("apps/server/package.json"),
-    web: vfs.exists("apps/web/package.json"),
+    server: vfs.exists(`apps/${config.backendName}/package.json`),
+    web: vfs.exists(`apps/${config.frontendName}/package.json`),
     native: vfs.exists("apps/native/package.json"),
   };
 
@@ -133,7 +133,7 @@ export function processWorkspaceDeps(vfs: VirtualFileSystem, config: ProjectConf
     if (database !== "none" && packages.db) serverDeps[`@${projectName}/db`] = workspaceVersion;
     addPackageDependency({
       vfs,
-      packagePath: "apps/server/package.json",
+      packagePath: `apps/${config.backendName}/package.json`,
       dependencies: commonDeps,
       devDependencies: ["typescript", "tsdown"],
       customDependencies: serverDeps,
@@ -151,7 +151,7 @@ export function processWorkspaceDeps(vfs: VirtualFileSystem, config: ProjectConf
 
     addPackageDependency({
       vfs,
-      packagePath: "apps/web/package.json",
+      packagePath: `apps/${config.frontendName}/package.json`,
       dependencies: commonDeps,
       devDependencies: ["typescript"],
       customDependencies: webPackageDeps,

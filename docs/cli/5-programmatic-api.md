@@ -7,6 +7,7 @@ Ngoài việc sử dụng như một công cụ dòng lệnh, `create-better-t-s
 Toàn bộ các API này đều trả về kiểu `Result` từ thư viện `better-result`, giúp bạn xử lý lỗi một cách an toàn mà không cần `try/catch`.
 
 ### `create(projectName, options)`
+
 Hàm này tương đương với việc chạy `npx create-better-t-stack` nhưng hoàn toàn không có giao diện terminal (silent mode).
 
 ```typescript
@@ -18,7 +19,7 @@ const result = await create("my-awesome-app", {
   database: "postgres",
   orm: "drizzle",
   auth: "better-auth",
-  install: true // Tự động chạy npm/bun install
+  install: true, // Tự động chạy npm/bun install
 });
 
 if (result.isOk()) {
@@ -29,6 +30,7 @@ if (result.isOk()) {
 ```
 
 ### `createVirtual(options)`
+
 Hàm này cực kỳ hữu ích cho môi trường trình duyệt hoặc test. Nó **không ghi file xuống đĩa vật lý**. Thay vào đó, nó trả về một cây thư mục ảo (`VirtualFileTree`).
 
 ```typescript
@@ -36,7 +38,7 @@ import { createVirtual } from "create-better-t-stack";
 
 const result = await createVirtual({
   frontend: ["tanstack-router"],
-  backend: "elysia"
+  backend: "elysia",
 });
 
 if (result.isOk()) {
@@ -47,6 +49,7 @@ if (result.isOk()) {
 ```
 
 ### `add(options)`
+
 Thêm addons vào một dự án hiện có thông qua code.
 
 ```typescript
@@ -55,13 +58,14 @@ import { add } from "create-better-t-stack";
 await add({
   addons: ["biome", "husky"],
   projectDir: "./my-existing-app",
-  install: true
+  install: true,
 });
 ```
 
 ## Các Type và Schema
 
 CLI export đầy đủ các type định nghĩa Stack để bạn sử dụng trong dự án của mình:
+
 - `ProjectConfig`: Interface cấu hình đầy đủ của một project.
 - `CreateInput`: Schema cho dữ liệu đầu vào của hàm create.
 - Các enum như `Frontend`, `Backend`, `Database`, `ORM`, vv...

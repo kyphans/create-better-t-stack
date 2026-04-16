@@ -13,7 +13,7 @@ export function processRuntimeDeps(vfs: VirtualFileSystem, config: ProjectConfig
 
   if (backend === "convex" || backend === "self" || runtime === "none") return;
 
-  const serverPath = "apps/server/package.json";
+  const serverPath = `apps/${config.backendName}/package.json`;
   if (!vfs.exists(serverPath)) return;
 
   const pkgJson = vfs.readJson<PackageJson>(serverPath);

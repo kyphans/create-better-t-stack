@@ -29,29 +29,29 @@ type PackageInfo = {
   devDependencies: Record<string, string>;
 };
 
-const PACKAGE_PATHS = [
-  ".",
-  "apps/server",
-  "apps/web",
-  "apps/native",
-  "apps/desktop",
-  "apps/fumadocs",
-  "apps/docs",
-  "packages/api",
-  "packages/db",
-  "packages/auth",
-  "packages/backend",
-  "packages/config",
-  "packages/env",
-  "packages/infra",
-  "packages/ui",
-];
-
 /**
  * Process dependency catalogs for pnpm/bun
  */
 export function processCatalogs(vfs: VirtualFileSystem, config: ProjectConfig): void {
   if (config.packageManager === "npm") return;
+
+  const PACKAGE_PATHS = [
+    ".",
+    `apps/${config.backendName}`,
+    `apps/${config.frontendName}`,
+    "apps/native",
+    "apps/desktop",
+    "apps/fumadocs",
+    "apps/docs",
+    "packages/api",
+    "packages/db",
+    "packages/auth",
+    "packages/backend",
+    "packages/config",
+    "packages/env",
+    "packages/infra",
+    "packages/ui",
+  ];
 
   const packagesInfo: PackageInfo[] = [];
 

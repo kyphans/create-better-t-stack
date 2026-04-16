@@ -1,9 +1,9 @@
 import os from "node:os";
 import path from "node:path";
 
+import { log } from "@clack/prompts";
 import { generate, EMBEDDED_TEMPLATES } from "@kps/template-generator";
 import { writeTree } from "@kps/template-generator/fs-writer";
-import { log } from "@clack/prompts";
 import { Result } from "better-result";
 import { $ } from "execa";
 import fs from "fs-extra";

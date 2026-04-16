@@ -1,5 +1,6 @@
 import path from "node:path";
 
+import { intro, log, outro } from "@clack/prompts";
 import {
   EMBEDDED_TEMPLATES,
   processAddonTemplates,
@@ -7,17 +8,16 @@ import {
   VirtualFileSystem,
 } from "@kps/template-generator";
 import { writeTree } from "@kps/template-generator/fs-writer";
-import { intro, log, outro } from "@clack/prompts";
 import { Result } from "better-result";
 import fs from "fs-extra";
 import pc from "picocolors";
 
 import { getAddonsToAdd } from "../../prompts/addons";
 import type { AddInput, Addons, AddonOptions, ProjectConfig } from "../../types";
-import { updateKpsConfig } from "../../utils/kps-config";
 import { isSilent, runWithContextAsync } from "../../utils/context";
 import { CLIError, UserCancelledError, displayError } from "../../utils/errors";
 import { validateAgentSafePathInput } from "../../utils/input-hardening";
+import { updateKpsConfig } from "../../utils/kps-config";
 import { renderTitle } from "../../utils/render-title";
 import { setupAddons } from "../addons/addons-setup";
 import { detectProjectConfig } from "./detect-project-config";

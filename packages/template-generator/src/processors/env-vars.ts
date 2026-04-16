@@ -520,7 +520,7 @@ export function processEnvVariables(vfs: VirtualFileSystem, config: ProjectConfi
 
   // --- Client App .env ---
   if (hasWebFrontend) {
-    const clientDir = "apps/web";
+    const clientDir = `apps/${config.frontendName}`;
     if (vfs.directoryExists(clientDir)) {
       const envPath = `${clientDir}/.env`;
       const clientVars = buildClientVars(frontend, backend, auth);
@@ -590,13 +590,13 @@ export function processEnvVariables(vfs: VirtualFileSystem, config: ProjectConfi
   );
 
   if (backend === "self") {
-    const webDir = "apps/web";
+    const webDir = `apps/${config.frontendName}`;
     if (vfs.directoryExists(webDir)) {
       const envPath = `${webDir}/.env`;
       writeEnvFile(vfs, envPath, serverVars);
     }
-  } else if (vfs.directoryExists("apps/server")) {
-    const envPath = "apps/server/.env";
+  } else if (vfs.directoryExists(`apps/${config.backendName}`)) {
+    const envPath = `apps/${config.backendName}/.env`;
     writeEnvFile(vfs, envPath, serverVars);
   }
 

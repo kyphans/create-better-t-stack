@@ -18,11 +18,23 @@ export async function processAddonTemplates(
 
     if (addon === "pwa") {
       if (config.frontend.includes("next")) {
-        processTemplatesFromPrefix(vfs, templates, "addons/pwa/apps/web/next", "apps/web", config);
+        processTemplatesFromPrefix(
+          vfs,
+          templates,
+          "addons/pwa/apps/web/next",
+          `apps/${config.frontendName}`,
+          config,
+        );
       } else if (
         config.frontend.some((f) => ["tanstack-router", "react-router", "solid"].includes(f))
       ) {
-        processTemplatesFromPrefix(vfs, templates, "addons/pwa/apps/web/vite", "apps/web", config);
+        processTemplatesFromPrefix(
+          vfs,
+          templates,
+          "addons/pwa/apps/web/vite",
+          `apps/${config.frontendName}`,
+          config,
+        );
       }
       continue;
     }

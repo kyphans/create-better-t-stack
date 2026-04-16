@@ -43,6 +43,14 @@ export function generateReproducibleCommand(config: ProjectConfig): string {
   flags.push(`--auth ${config.auth}`);
   flags.push(`--payments ${config.payments}`);
 
+  if (config.frontendName && config.frontendName !== "web") {
+    flags.push(`--frontend-name ${config.frontendName}`);
+  }
+
+  if (config.backendName && config.backendName !== "server") {
+    flags.push(`--backend-name ${config.backendName}`);
+  }
+
   flags.push(formatMultiFlag("--addons", addons));
   flags.push(formatMultiFlag("--examples", examples));
 

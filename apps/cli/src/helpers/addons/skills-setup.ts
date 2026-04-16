@@ -4,10 +4,10 @@ import { $ } from "execa";
 import pc from "picocolors";
 
 import type { AddonOptions, ProjectConfig } from "../../types";
-import { readKpsConfig } from "../../utils/kps-config";
 import { isSilent } from "../../utils/context";
 import { AddonSetupError, UserCancelledError } from "../../utils/errors";
 import { shouldSkipExternalCommands } from "../../utils/external-commands";
+import { readKpsConfig } from "../../utils/kps-config";
 import { getPackageRunnerPrefix } from "../../utils/package-runner";
 import { cliLog, createSpinner } from "../../utils/terminal-output";
 

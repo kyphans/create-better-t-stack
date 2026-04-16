@@ -7,15 +7,19 @@ Dưới đây là mục lục tổng hợp dẫn đến các tài liệu chi ti�
 ## Mục Lục Tài Liệu (Table of Contents)
 
 1. **[Điểm Đầu Vào & Kiến Trúc Core (Entry Points)](./1-entry-points.md)**
+
    > Giải thích luồng khởi chạy từ terminal, vai trò của `cli.ts`, `index.ts`, và cơ chế định tuyến bằng `tRPC Cli`.
 
 2. **[Hệ Thống Tương Tác Chỉ Dẫn (Prompts System)](./2-prompts-system.md)**
+
    > Chi tiết về giao diện dòng lệnh (CLI UI) sử dụng `@clack/prompts`, hệ thống điều hướng thông minh `navigable.ts` cho phép người dùng đi tới/lui giữa các bước.
 
 3. **[Trình Xử Lý Lệnh Tập Lõi (Core Command Handlers)](./3-core-command-handlers.md)**
+
    > Phân tích quy trình tạo dự án (Project Generation Flow), cách tương tác với hệ thống File Ảo (Virtual File System - VFS) và phân giải dependencies.
 
 4. **[Các Công Cụ & Trình Xác Thực (Utils & Validation)](./4-utils-and-validation.md)**
+
    > Tổng hợp các hàm tiện ích như kiểm tra tương thích (compatibility rules), bắt lỗi (error handling), format code, và gửi telemetry.
 
 5. **[Hướng Dẫn Mở Rộng & Phát Triển (Development Guide)](./5-development-guide.md)**
